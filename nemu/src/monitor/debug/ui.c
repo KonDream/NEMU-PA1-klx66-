@@ -112,9 +112,9 @@ static int cmd_info(char *args)
 	}
 	printf("\n");
 	
-	for(i = R_EAX; i <= R_EDI; i ++)
+	for(i = R_AX; i <= R_DI; i ++)
 	{
-	printf("%s: 0x%08x %d\n", regsw[i], cpu.gpr[i]._32, cpu.gpr[i]._32);
+	printf("%s: 0x%08x %d\n", regsw[i], cpu.gpr[i]._16, cpu.gpr[i]._16);
 	}
 	printf("\n");
 
