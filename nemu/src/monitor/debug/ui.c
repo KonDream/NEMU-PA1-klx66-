@@ -108,10 +108,22 @@ static int cmd_info(char *args)
 	int i;
 	for(i = R_EAX; i <= R_EDI; i ++)
 	{
-	printf("%s: 0x%08x ", regsl[i], cpu.gpr[i]._32);
-	printf("%s: 0x%08x ", regsw[i], cpu.gpr[i]._16);
-	printf("%s: 0x%04x", regsb[i], cpu.gpr[i]._8[0]);
-	printf("%04x\n", cpu.gpr[i]._8[1]);
+	printf("%s: 0x%08x %d\n", regsl[i], cpu.gpr[i]._32, cpu.gpr[i]._32);
+	}
+	
+	for(i = R_AX; i <= R_DI; i ++)
+	{
+	printf("%s: 0x%08x %d\n", regsw[i], cpu.gpr[i]._32, cpu.gpr[i]._32);
+	}
+
+	for(i = R_AL; i <= R_DL; i ++)
+	{
+	printf("%s: 0x%04x %d\n", regsb[i], cpu.gpr[i]._8[0], cpu.gpr[i]._8[0]);
+	}
+
+	for(i = R_AH; i <= R_DH; i ++)
+	{
+	printf("%s: 0x%04x %d\n", regsb[i], cpu.gpr[i]._8[1], cpu.gpr[i]._8[1]);
 	}
 	
 	return 0;
