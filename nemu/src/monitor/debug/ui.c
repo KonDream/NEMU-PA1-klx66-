@@ -147,7 +147,7 @@ static int cmd_x(char *args)
 	printf("0x%x:", address);
 	for(i = 0; i < klx; i ++)
 	{	
-	printf("%08x\t ", swaddr_read(address, 4));
+	printf("%08x ", swaddr_read(address, 4));
 	address += 4;	
 	}
 	printf("\n");
