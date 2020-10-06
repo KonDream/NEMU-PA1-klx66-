@@ -109,9 +109,9 @@ static int cmd_info(char *args)
 	for(i = R_EAX; i <= R_EDI; i ++)
 	{
 	printf("%s: 0x%08x %d\n", regsl[i], cpu.gpr[i]._32, cpu.gpr[i]._32);
-//	printf("%s: 0x%08x ", regsw[i], cpu.gpr[i]._16);
-//	printf("%s: 0x%04x\n", regsb[i], cpu.gpr[i]._8[0]);
-//	printf("%04x\n", cpu.gpr[i]._8[1]);
+	printf("%s: 0x%08x ", regsw[i], cpu.gpr[i]._16);
+	printf("%s: 0x%04x", regsb[i], cpu.gpr[i]._8[0]);
+	printf("%04x\n", cpu.gpr[i]._8[1]);
 	}
 	
 	return 0;
