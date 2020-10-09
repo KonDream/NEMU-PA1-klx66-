@@ -44,6 +44,8 @@ static int cmd_info(char *args);
 
 static int cmd_x(char *args);
 
+static int cmd_p(char *args);
+
 static struct {
 	char *name;
 	char *description;
@@ -56,6 +58,7 @@ static struct {
 	/* TODO: Add more commands */
 	{ "info", "Output all value", cmd_info },
 	{ "x", "Scan memory", cmd_x },
+	{ "p", "Expression evalution", cmd_p },
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
@@ -151,6 +154,18 @@ static int cmd_x(char *args)
 	address += 4;	
 	}
 	printf("\n");
+	return 0;
+}
+
+static int cmd_p(char *args)
+{
+	uint32_t num;
+	bool success;
+	num = expr(args, &success);
+	if(success)
+	printf("0x%x: %d\n", num,num);
+	else
+	assert(0);
 	return 0;
 }
 
