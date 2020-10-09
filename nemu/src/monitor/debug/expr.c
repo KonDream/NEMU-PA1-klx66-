@@ -170,16 +170,23 @@ static bool check_parentheses(int p, int q)
 {
 	int cnt = 0;
 	int i;
+	int flag = 0;
 	for(i = p; i <= q; i ++)
 	{
 		if(tokens[i].type == 40)
-		cnt ++;
+		{
+			cnt ++; 
+			flag = 1;
+		}
 		else if(tokens[i].type == 41)
-		cnt --;
+		{
+			cnt --;
+			flag = 1;
+		}
 		if(cnt < 0)
 		return false;
 	}
-	if(cnt == 0)
+	if(cnt == 0 && flag == 1)
 	return true;
 	return false;
 }
