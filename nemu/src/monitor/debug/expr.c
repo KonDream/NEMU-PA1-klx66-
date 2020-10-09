@@ -217,12 +217,13 @@ static uint32_t find_dominant_operator(int p, int q)
 				op = i;
 				break;
 			default:
+				assert(0);
 				break;
 		}
 	}
 	return op;
 }
-
+int test = 0;
 static uint32_t eval(int p, int q)
 {
 	if(p > q)
@@ -232,6 +233,7 @@ static uint32_t eval(int p, int q)
 	}
 	else if(p == q)
 	{
+		printf("test: %d\n",test++);
 		int klx;
 		sscanf(tokens[p].str, "%d", &klx);
 		return klx;
