@@ -107,7 +107,7 @@ static bool make_token(char *e) {
 					tokens[nr_token].str[substr_len] = '\0';
 					nr_token ++;
 				}
-				position += substr_len;
+			//	position += substr_len;
 				break;
 			}
 		}
