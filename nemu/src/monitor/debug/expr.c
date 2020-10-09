@@ -26,11 +26,11 @@ static struct rule {
 	{"\\+", '+'},					// plus
 	{"==", EQ},						// equal
 	
+	{"\\*", '*'}, 		// multiplication
+	{"-", '-'}, 		// subtraction
+	{"/", '/'}, 		// division
 	{"\\(", '('},		// left parenthesis
 	{"\\)", ')'}, 		// right parenthesis
-	{"-", '-'}, 		// subtraction
-	{"\\*", '*'}, 		// multiplication
-	{"/", '/'}, 		// division
 	{"!=", UEQ}, 		// not equal	
 	{"&&", AND}, 		// logical AND
 	{"\\|\\|", OR},		// logical OR
@@ -96,27 +96,27 @@ static bool make_token(char *e) {
 				 */
 
 				switch(rules[i].token_type) {
-					case 43:
+					case 43:	// +
 					    	tokens[nr_token].type = 43;
 					    	break;
-					case 257:
+					case 257:	// ==
 						tokens[nr_token].type = 257;
 						strcpy(tokens[nr_token].str, "==");
 						break;
-					case 40:
-						tokens[nr_token].type = 40;
-						break;
-					case 41:
-						tokens[nr_token].type = 41;
-						break;
-					case 45:
-						tokens[nr_token].type = 45;
-						break;
-					case 42:
+					case 42:	// *
 						tokens[nr_token].type = 42;
 						break;
-					case 47:
+					case 45:	// -
+						tokens[nr_token].type = 45;
+						break;
+					case 47:	// /
 						tokens[nr_token].type = 47;
+						break;
+					case 40:	// (
+						tokens[nr_token].type = 40;
+						break;
+					case 41:	// )
+						tokens[nr_token].type = 41;
 						break;
 					case 258:
 						tokens[nr_token].type = 258;
