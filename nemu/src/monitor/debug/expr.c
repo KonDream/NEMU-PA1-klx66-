@@ -98,54 +98,64 @@ static bool make_token(char *e) {
 			switch(rules[i].token_type) {
 					case 43:	// +
 					    	tokens[nr_token].type = 43;
+						nr_token ++;
 					    	break;
 					case 257:	// ==
 						tokens[nr_token].type = 257;
 						strcpy(tokens[nr_token].str, "==");
+						nr_token ++;
 						break;
 					case 42:	// *
 						tokens[nr_token].type = 42;
+						nr_token ++;
 						break;
 					case 45:	// -
 						tokens[nr_token].type = 45;
+						nr_token ++;
 						break;
 					case 47:	// /
 						tokens[nr_token].type = 47;
+						nr_token ++;
 						break;
 					case 40:	// (
 						tokens[nr_token].type = 40;
+						nr_token ++;
 						break;
 					case 41:	// )
 						tokens[nr_token].type = 41;
+						nr_token ++;
 						break;
 					case 258:
 						tokens[nr_token].type = 258;
 						strcpy(tokens[nr_token].str, "!=");
+						nr_token ++;
 						break;
 					case 259:
 						tokens[nr_token].type = 259;
 						strcpy(tokens[nr_token].str, "&&");
+						nr_token ++;
 						break;
 					case 260:
 						tokens[nr_token].type = 260;
 						strcpy(tokens[nr_token].str, "||");
+						nr_token ++;
 						break;
 					case 261:
 						tokens[nr_token].type = 261;
 						strcpy(tokens[nr_token].str, "!");
+						nr_token ++;
 						break;
 					case 263:
 						tokens[nr_token].type = rules[nr_token].token_type;
 						strcpy(tokens[nr_token].str, substr_start);
+						nr_token ++;
 						break; 
-					default: nr_token --;//panic("please implement me");
+				//	default: nr_token --;//panic("please implement me");
 //						return 0;
 				}
-				nr_token ++;
 				break;
 			}
 		}
-		nr_token --;
 
 		if(i == NR_REGEX) {
 			printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
