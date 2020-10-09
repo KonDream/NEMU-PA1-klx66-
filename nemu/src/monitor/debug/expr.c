@@ -86,7 +86,7 @@ static bool make_token(char *e) {
 			if(regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) { 	// first position
 				char *substr_start = e + position;
 				int substr_len = pmatch.rm_eo;
-
+					
 				Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s", i, rules[i].regex, position, substr_len, substr_len, substr_start);
 				position += substr_len;
 
@@ -94,8 +94,8 @@ static bool make_token(char *e) {
 				 * to record the token in the array `tokens'. For certain types
 				 * of tokens, some extra actions should be performed.
 				 */
-
-				switch(rules[i].token_type) {
+				
+			switch(rules[i].token_type) {
 					case 43:	// +
 					    	tokens[nr_token].type = 43;
 					    	break;
@@ -135,9 +135,10 @@ static bool make_token(char *e) {
 					//	strcpy(tokens[nr_token].str, "!");
 						break;
 				//	case 
-				//	default: panic("please implement me");
+					default: panic("please implement me");
+						return 0;
 				}
-
+				nr_token ++;
 				break;
 			}
 		}
