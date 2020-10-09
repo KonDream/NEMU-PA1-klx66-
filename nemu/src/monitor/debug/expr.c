@@ -239,7 +239,7 @@ static uint32_t eval(int p, int q)
 				assert(k_right != 0);
 				return k_left / k_right;
 			default:
-				assert(0);
+//				assert(0);
 				break;
 		}
 	}
