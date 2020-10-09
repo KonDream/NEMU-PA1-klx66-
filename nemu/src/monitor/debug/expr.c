@@ -44,6 +44,9 @@ static struct rule {
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
 
 static regex_t re[NR_REGEX];
+static uint32_t eval(int p, int q);
+static uint32_t find_dominant_operator(int p, int q);
+static bool check_parentheses(int p, int q);
 
 /* Rules are used for many times.
  * Therefore we compile them only once before any usage.
@@ -148,12 +151,107 @@ static bool make_token(char *e) {
 	return true; 
 }
 
+static bool check_parentheses(int p, int q)
+{
+	int cnt = 0;
+	int i;
+	for(i = p; i <= q; i ++)
+	{
+		if(tokens[i].type == 40)
+		cnt ++;
+		else if(tokens[i].type == 41)
+		cnt --;
+		if(cnt < 0)
+		return false;
+	}
+	if(cnt == 0)
+	return true;
+	return false;
+}
+
+static uint32_t find_dominant_operator(int p, int q)
+{
+	int op;
+	op = -1;
+	int i;
+	int cnt_left = -1;
+	for(i = p; i <= q; i ++)
+	{
+		switch(tokens[i].type)
+		{
+			case 40:	// (
+				cnt_left ++; 
+				break;
+			case 41:	// )
+				cnt_left --;
+				break;
+			case 43:	// +
+				if(cnt_left < 0)
+				op = i;
+				break;
+			case 45:	// -
+				if(cnt_left < 0)
+				op = i;
+				break;
+			case 42:	// *
+				if(cnt_left < 0 && op < 0)
+				op = i;
+				break;
+			case 47:	// /
+				if(cnt_left < 0 && op < 0)
+				op = i;
+				break;
+			default:
+				break;
+		}
+	}
+	return op;
+}
+
+static uint32_t eval(int p, int q)
+{
+	if(p > q)
+	{
+		printf("Bad Expression\n");
+		return 0;
+	}
+	else if(p == q)
+	{
+		int klx;
+		sscanf(tokens[p].str, "%d", &klx);
+		return klx;
+	}
+	else if(check_parentheses(p, q) == true)
+		return eval(p + 1, q - 1);
+	else
+	{
+		int op = find_dominant_operator(p, q);
+		uint32_t k_left = eval(p, op - 1);
+		uint32_t k_right = eval(op + 1, q);
+		switch(tokens[op].type)
+		{
+			case 43: return k_left + k_right;
+			case 45: return k_left - k_right;
+			case 42: return k_left * k_right;
+			case 47: 
+				if(k_right == 0)
+				printf("Illegal Expression\n");
+				assert(k_right != 0);
+				return k_left / k_right;
+			default:
+				assert(0);
+				break;
+		}
+	}
+	return 0;
+}
+
 uint32_t expr(char *e, bool *success) {
 	if(!make_token(e)) {
 		*success = false;
 		return 0;
 	}
-
+	eval(1, 2);
 	/* TODO: Insert codes to evaluate the expression. */
 	panic("please implement me");
 	return 0;
