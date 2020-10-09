@@ -16,29 +16,30 @@ enum {
 static struct rule {
 	char *regex;
 	int token_type;
+	int priority;
 } rules[] = {
 
 	/* TODO: Add more rules.
 	 * Pay attention to the precedence level of different rules.
 	 */
 
-	{" +",	NOTYPE},				// spaces
-	{"\\+", '+'},					// plus
-	{"==", EQ},						// equal
+	{" +",	NOTYPE, 0},				// spaces
+	{"\\+", '+', 4},					// plus
+	{"==", EQ, 3},						// equal
 	
-	{"\\*", '*'}, 		// multiplication
-	{"-", '-'}, 		// subtraction
-	{"/", '/'}, 		// division
-	{"\\(", '('},		// left parenthesis
-	{"\\)", ')'}, 		// right parenthesis
-	{"!=", UEQ}, 		// not equal	
-	{"&&", AND}, 		// logical AND
-	{"\\|\\|", OR},		// logical OR
-	{"!", NOT}, 		// logical NOT
-	{"0[xX][A-Fa-f0-9]{1,8}", hex}, //hex
-	{"[0-9]{1,10}", num},	// num
-	{"[a_zA_Z_][a-zA-Z0-9_]*", var},	// var
-	{"\\$[a-dA-D][hlHL]|\\$[eE]?(ax|dx|cx|bx|bp|si|di|sp)", reg}  //reg
+	{"\\*", '*', 5}, 		// multiplication
+	{"-", '-', 4}, 		// subtraction
+	{"/", '/', 5}, 		// division
+	{"\\(", '(', 7},		// left parenthesis
+	{"\\)", ')', 7}, 		// right parenthesis
+	{"!=", UEQ, 3}, 		// not equal	
+	{"&&", AND, 2}, 		// logical AND
+	{"\\|\\|", OR, 1},		// logical OR
+	{"!", NOT, 6}, 		// logical NOT
+	{"0[xX][A-Fa-f0-9]{1,8}", hex, 0}, //hex
+	{"[0-9]{1,10}", num, 0},	// num
+	{"[a_zA_Z_][a-zA-Z0-9_]*", var, 0},	// var
+	{"\\$[a-dA-D][hlHL]|\\$[eE]?(ax|dx|cx|bx|bp|si|di|sp)", reg, 0}  //reg
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -68,6 +69,7 @@ void init_regex() {
 typedef struct token {
 	int type;
 	char str[32];
+	int priority;
 } Token;
 
 Token tokens[32];
@@ -85,6 +87,7 @@ static bool make_token(char *e) {
 		for(i = 0; i < NR_REGEX; i ++) {
 			if(regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) { 	// first position
 				char *substr_start = e + position;
+				char *tmp = e + position + 1;
 				int substr_len = pmatch.rm_eo;
 					
 				Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s", i, rules[i].regex, position, substr_len, substr_len, substr_start);
@@ -96,63 +99,15 @@ static bool make_token(char *e) {
 				 */
 				
 			switch(rules[i].token_type) {
-					case 43:	// +
-					    	tokens[nr_token].type = 43;
-						nr_token ++;
-					    	break;
-					case 257:	// ==
-						tokens[nr_token].type = 257;
-						strcpy(tokens[nr_token].str, "==");
-						nr_token ++;
-						break;
-					case 42:	// *
-						tokens[nr_token].type = 42;
-						nr_token ++;
-						break;
-					case 45:	// -
-						tokens[nr_token].type = 45;
-						nr_token ++;
-						break;
-					case 47:	// /
-						tokens[nr_token].type = 47;
-						nr_token ++;
-						break;
-					case 40:	// (
-						tokens[nr_token].type = 40;
-						nr_token ++;
-						break;
-					case 41:	// )
-						tokens[nr_token].type = 41;
-						nr_token ++;
-						break;
-					case 258:
-						tokens[nr_token].type = 258;
-						strcpy(tokens[nr_token].str, "!=");
-						nr_token ++;
-						break;
-					case 259:
-						tokens[nr_token].type = 259;
-						strcpy(tokens[nr_token].str, "&&");
-						nr_token ++;
-						break;
-					case 260:
-						tokens[nr_token].type = 260;
-						strcpy(tokens[nr_token].str, "||");
-						nr_token ++;
-						break;
-					case 261:
-						tokens[nr_token].type = 261;
-						strcpy(tokens[nr_token].str, "!");
-						nr_token ++;
-						break;
-					case 263:
-						tokens[nr_token].type = rules[nr_token].token_type;
-						strcpy(tokens[nr_token].str, substr_start);
-						nr_token ++;
-						break; 
-					default: panic("please implement me");
-//						return 0;
+				case 256: break;
+				default:
+					tokens[nr_token].type = rules[i].token_type;
+					tokens[nr_token].priority = rules[i].priority;
+					strncpy(tokens[nr_token].str, tmp, substr_len - 1);
+					tokens[nr_token].str[substr_len - 1] = '\0';
+					nr_token ++;
 				}
+				position += substr_len;
 				break;
 			}
 		}
