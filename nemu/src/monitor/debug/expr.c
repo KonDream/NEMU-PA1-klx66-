@@ -173,7 +173,7 @@ static bool check_parentheses(int p, int q)
 	int flag = 0;
 	if(tokens[p].type == 40 && tokens[q].type == 41)
 	{
-	for(i = p; i <= q; i ++)
+	for(i = p + 1; i < q; i ++)
 	{
 		if(tokens[i].type == 40)
 		{
@@ -188,8 +188,9 @@ static bool check_parentheses(int p, int q)
 		if(cnt < 0)
 		return false;
 	}
-	if(cnt == 0 && flag == 1)
+	if(cnt == 0 && flag)
 	return true;
+	return false;
 	}
 	return false;
 }
