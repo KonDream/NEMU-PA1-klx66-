@@ -150,7 +150,7 @@ static bool make_token(char *e) {
 						strcpy(tokens[nr_token].str, substr_start);
 						nr_token ++;
 						break; 
-				//	default: nr_token --;//panic("please implement me");
+					default: panic("please implement me");
 //						return 0;
 				}
 				break;
