@@ -163,7 +163,7 @@ static int cmd_p(char *args)
 	bool success;
 	num = expr(args, &success);
 	if(success)
-	printf("0x%x: %d\n", num,num);
+	printf("%d\n", num);
 //	else
 //	assert(0);
 	return 0;
