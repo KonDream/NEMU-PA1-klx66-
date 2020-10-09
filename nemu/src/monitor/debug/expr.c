@@ -240,7 +240,7 @@ static uint32_t eval(int p, int q)
 	if(p > q)
 	{
 		printf("Bad Expression\n");
-		return 1;
+		assert(0);
 	}
 	else if(p == q)
 	{
