@@ -171,6 +171,8 @@ static bool check_parentheses(int p, int q)
 	int cnt = 0;
 	int i;
 	int flag = 0;
+	if(tokens[p].type == 40 && tokens[q].type == 41)
+	{
 	for(i = p; i <= q; i ++)
 	{
 		if(tokens[i].type == 40)
@@ -188,6 +190,8 @@ static bool check_parentheses(int p, int q)
 	}
 	if(cnt == 0 && flag == 1)
 	return true;
+	return false;
+	}
 	return false;
 }
 
@@ -224,11 +228,10 @@ static uint32_t find_dominant_operator(int p, int q)
 				op = i;
 				break;
 			default:
-				assert(0);
+		//		assert(0);
 				break;
 		}
 	}
-	printf("fdo.op: %d\n",op);
 	return op;
 }
 int test = 0;
@@ -243,18 +246,14 @@ static uint32_t eval(int p, int q)
 	{
 		int klx;
 		sscanf(tokens[p].str, "%d", &klx);
-                printf("test: %d klx: %d\n",test++,klx);
 		return klx;
 	}
 	else if(check_parentheses(p, q) == true)
 		return eval(p + 1, q - 1);
 	else
 	{
-printf("mark\n");
 		int op;
 		op = find_dominant_operator(p, q);
-
-		printf("op: %d\n",op);
 
 		uint32_t k_left = eval(p, op - 1);
 		uint32_t k_right = eval(op + 1, q);
@@ -281,7 +280,6 @@ uint32_t expr(char *e, bool *success) {
 		*success = false;
 		return 0;
 	}
-	printf("nr_token: %d\n",nr_token);
 	/* TODO: Insert codes to evaluate the expression. */
 	*success = true;
 	return eval(0, nr_token - 1);
