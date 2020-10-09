@@ -239,8 +239,8 @@ static uint32_t eval(int p, int q)
 {
 	if(p > q)
 	{
-		Assert(p > q, "Bad Expression\n");
-		return 0;
+		printf("Bad Expression\n");
+		return 1;
 	}
 	else if(p == q)
 	{
