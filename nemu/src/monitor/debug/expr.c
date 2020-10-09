@@ -135,8 +135,8 @@ static bool make_token(char *e) {
 					//	strcpy(tokens[nr_token].str, "!");
 						break;
 				//	case 
-					default: //panic("please implement me");
-						return 0;
+//					default: //panic("please implement me");
+//						return 0;
 				}
 				nr_token ++;
 				break;
