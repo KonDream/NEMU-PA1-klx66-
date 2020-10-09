@@ -136,6 +136,7 @@ static bool make_token(char *e) {
 						break;
 					case 263:
 						tokens[nr_token].type = rules[nr_token].token_type;
+						strcpy(tokens[nr_token].str, rules[nr_token].regex);
 						break; 
 					default: nr_token --;//panic("please implement me");
 //						return 0;
