@@ -221,6 +221,7 @@ static uint32_t find_dominant_operator(int p, int q)
 				break;
 		}
 	}
+	printf("fdo.op: %d\n",op);
 	return op;
 }
 int test = 0;
@@ -233,16 +234,17 @@ static uint32_t eval(int p, int q)
 	}
 	else if(p == q)
 	{
-		printf("test: %d\n",test++);
 		int klx;
 		sscanf(tokens[p].str, "%d", &klx);
+                printf("test: %d klx: %d\n",test++,klx);
 		return klx;
 	}
 	else if(check_parentheses(p, q) == true)
 		return eval(p + 1, q - 1);
 	else
 	{
-		int op = find_dominant_operator(p, q);
+		int op;
+		op = find_dominant_operator(p, q);
 
 		printf("op: %d\n",op);
 
