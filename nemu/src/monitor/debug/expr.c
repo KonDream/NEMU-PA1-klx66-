@@ -132,10 +132,10 @@ static bool make_token(char *e) {
 						break;
 					case 261:
 						tokens[nr_token].type = 261;
-					//	strcpy(tokens[nr_token].str, "!");
+						strcpy(tokens[nr_token].str, "!");
 						break;
 				//	case 
-//					default: //panic("please implement me");
+					default: nr_token --;//panic("please implement me");
 //						return 0;
 				}
 				nr_token ++;
