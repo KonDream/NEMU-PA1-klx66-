@@ -234,7 +234,7 @@ static uint32_t find_dominant_operator(int p, int q)
 	}
 	return op;
 }
-int test = 0;
+
 static uint32_t eval(int p, int q)
 {
 	if(p > q)
@@ -272,7 +272,8 @@ static uint32_t eval(int p, int q)
 				break;
 		}
 	}
-	return 0;
+	assert(1);
+	return -123;
 }
 
 uint32_t expr(char *e, bool *success) {
