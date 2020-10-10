@@ -241,7 +241,7 @@ uint32_t expr(char *e, bool *success) {
 	int i;
 	for(i = 0; i < nr_token; i ++)
 	{
-		if(tokens[i].type == '-' && (i == 0 || tokens[i].type != num || tokens[i].type != hex || tokens[i].type != reg || tokens[i].type != var))
+		if(tokens[i].type == '-' && (i == 0 || tokens[i - 1].type != num || tokens[i - 1].type != hex || tokens[i - 1].type != reg || tokens[i - 1].type != var))
 		{
 			tokens[i].type = neg;
 			tokens[i].priority = 6;
