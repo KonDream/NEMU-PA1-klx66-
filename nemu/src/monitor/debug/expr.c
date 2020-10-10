@@ -152,39 +152,33 @@ static bool check_parentheses(int p, int q)
 
 static uint32_t find_dominant_operator(int p, int q)
 {
-	int op;
-	op = -1;
-	int i;
-	int cnt_left = -1;
+	int op = 1;
+	int i, j;
+	int min_pri = 15;
 	for(i = p; i <= q; i ++)
 	{
-		switch(tokens[i].type)
+		if(tokens[i].type == num || tokens[i].type == hex || tokens[i].type == reg || tokens[i].type == var)
+			continue;
+		int flag = 0;
+		bool klx = true;
+		for(j = i - 1; j >= p; j --)
 		{
-			case 40:	// (
-				cnt_left ++; 
+			if(tokens[i].type == '(' && !flag)
+			{
+				klx = false;
 				break;
-			case 41:	// )
-				cnt_left --;
-				break;
-			case 43:	// +
-				if(cnt_left < 0)
-				op = i;
-				break;
-			case 45:	// -
-				if(cnt_left < 0)
-				op = i;
-				break;
-			case 42:	// *
-				if(cnt_left < 0 && op < 0)
-				op = i;
-				break;
-			case 47:	// /
-				if(cnt_left < 0 && op < 0)
-				op = i;
-				break;
-			default:
-		//		assert(0);
-				break;
+			}
+			else if(tokens[i].type == '(')
+				flag --;
+			else if(tokens[i].type == ')')
+				flag ++;
+		}
+		if(!klx)
+		continue;
+		if(tokens[i].priority <= min_pri)
+		{
+			min_pri = tokens[i].priority;
+			op = i;
 		}
 	}
 	return op;
