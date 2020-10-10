@@ -209,15 +209,20 @@ int eval(int p, int q)
 			if(strlen(tokens[p].str) == 3)
 			{
 				int i;
+				int flag = 0;
 				for(i = R_EAX; i <= R_ESP; i ++)
 				{
 					if(strcpy(tokens[p].str, regsl[i]) == 0)
 						break;
 				}
 				if(strcpy(tokens[p].str, "eip") == 0)
+				{
 					klx = cpu.eip;
+					flag = 1;
+				}
 				else
 					Assert(1, "No such that register!\n");
+				if(!flag)
 				klx = reg_l(i);	
 			}
 			else if(strlen(tokens[p].str) == 2)
@@ -317,7 +322,7 @@ uint32_t expr(char *e, bool *success) {
 			tokens[i].priority = 6;
 		}
 	}
-
+	printf("nr_token: %d\n",nr_token);
 	int ans=eval(0, nr_token - 1);
 	return ans;
 	panic("please implement me");
