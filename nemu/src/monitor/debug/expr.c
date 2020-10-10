@@ -163,14 +163,14 @@ static uint32_t find_dominant_operator(int p, int q)
 		bool klx = true;
 		for(j = i - 1; j >= p; j --)
 		{
-			if(tokens[i].type == '(' && !flag)
+			if(tokens[j].type == '(' && !flag)
 			{
 				klx = false;
 				break;
 			}
-			if(tokens[i].type == '(')
+			if(tokens[j].type == '(')
 				flag --;
-			if(tokens[i].type == ')')
+			if(tokens[j].type == ')')
 				flag ++;
 		}
 		if(!klx)
