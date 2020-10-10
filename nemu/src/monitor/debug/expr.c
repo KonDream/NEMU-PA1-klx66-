@@ -206,7 +206,7 @@ int eval(int p, int q)
 		sscanf(tokens[p].str, "%x", &klx);
 		if(tokens[p].type == reg)
 		{
-			if(strlen(tokens[p].str) == 4)
+			if(strlen(tokens[p].str) == 3)
 			{
 				int i;
 				for(i = R_EAX; i <= R_ESP; i ++)
@@ -222,6 +222,8 @@ int eval(int p, int q)
 			}
 			else if(strlen(tokens[p].str) == 2)
 			{
+				if(tokens[p].str[1] == 'x' || tokens[p].str[1] == 'i' || tokens[p].str[1] == 'p')
+				{
 				int i;
 				for(i = R_AX; i <= R_SP; i ++)
 				{
@@ -229,8 +231,9 @@ int eval(int p, int q)
 						break;
 				}
 				klx = reg_w(i);
+				}
 			}
-			else if(strlen(tokens[p].str) == 1)
+			else if(tokens[p].str[1] == 'l' || tokens[p].str[1] == 'h')
 			{
 				int i;
 				for(i = R_AL; i <= R_BH; i ++)
