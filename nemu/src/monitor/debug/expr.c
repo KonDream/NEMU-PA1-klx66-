@@ -203,8 +203,7 @@ static uint32_t eval(int p, int q)
 	{
 		int op;
 		op = find_dominant_operator(p, q);
-		printf("%d ", op);	
-		if(/*p == op || */tokens[op].type == neg)
+		if(p == op || tokens[op].type == neg)
 		{
 			uint32_t k1 = eval(p + 1, q);
 			switch(tokens[p].type)
@@ -226,7 +225,8 @@ static uint32_t eval(int p, int q)
 		//		if(k_right == 0)
 		//		printf("Illegal Expression\n");
 			//	assert(k_right != 0);
-				
+				printf("k_left: %d", k_left);
+				printf(" k_right: %d", k_right);
 				return k_left / k_right;
 			default:
 				assert(0);
