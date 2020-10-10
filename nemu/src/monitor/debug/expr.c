@@ -213,7 +213,7 @@ static uint32_t eval(int p, int q)
 		if(p == op || tokens[op].type == neg)
 		{
 			uint32_t k1 = eval(p + 1, q);
-			switch(tokens[op].type)
+			switch(tokens[p].type)
 			{
 				case neg: return -k1;
 			}
@@ -251,7 +251,7 @@ uint32_t expr(char *e, bool *success) {
 	int i;
 	for(i = 0; i < nr_token; i ++)
 	{
-		if(tokens[i].type == '-' && (i == 0 || tokens[i - 1].type != num || tokens[i - 1].type != hex || tokens[i - 1].type != reg || tokens[i - 1].type != var))
+		if(tokens[i].type == '-' && ((i == 0) || (tokens[i - 1].type != num && tokens[i - 1].type != hex && tokens[i - 1].type != reg && tokens[i - 1].type != var && tokens[i - 1].type != ')')))
 		{
 			tokens[i].type = neg;
 			tokens[i].priority = 6;
