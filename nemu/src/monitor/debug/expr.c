@@ -223,8 +223,8 @@ static uint32_t eval(int p, int q)
 			case 45: return k_left - k_right;
 			case 42: return k_left * k_right;
 			case 47: 
-				if(k_right == 0)
-				printf("Illegal Expression\n");
+		//		if(k_right == 0)
+		//		printf("Illegal Expression\n");
 			//	assert(k_right != 0);
 				
 				return k_left / k_right;
