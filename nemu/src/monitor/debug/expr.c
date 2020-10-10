@@ -200,7 +200,49 @@ int eval(int p, int q)
 	else if(p == q)
 	{
 		uint32_t klx;
+		if(tokens[p].type == num)
 		sscanf(tokens[p].str, "%d", &klx);
+		if(tokens[p].type == hex)
+		sscanf(tokens[p].str, "%x", &klx);
+		if(tokens[p].type == reg)
+		{
+			if(strlen(tokens[p].str) == 3)
+			{
+				int i;
+				for(i = R_EAX; i <= R_ESP; i ++)
+				{
+					if(strcpy(tokens[p].str, regsl[i]) == 0)
+						break;
+				}
+				if(strcpy(tokens[p].str, "eip") == 0)
+					klx = cpu.eip;
+				else
+					Assert(1, "No such that register!\n");
+				klx = reg_l(i);	
+			}
+			else if(strlen(tokens[p].str) == 2)
+			{
+				int i;
+				for(i = R_AX; i <= R_SP; i ++)
+				{
+					if(strcpy(tokens[p].str, regsw[i]) == 0)
+						break;
+				}
+				klx = reg_w(i);
+			}
+			else if(strlen(tokens[p].str) == 1)
+			{
+				int i;
+				for(i = R_AL; i <= R_BH; i ++)
+				{
+					if(strcpy(tokens[p].str, regsb[i]) == 0)
+						break;
+				}
+				klx = reg_b(i);
+			}
+			else
+				assert(1);
+		}
 		return klx;
 	}
 	else if(check_parentheses(p, q) == true)
@@ -209,12 +251,14 @@ int eval(int p, int q)
 	{
 		int op;
 		op = find_dominant_operator(p, q);
-		if(p == op || tokens[op].type == neg)
+		if(p == op || tokens[op].type == neg || tokens[op].type == pointer || tokens[op].type == NOT)
 		{
 			uint32_t k1 = eval(p + 1, q);
 			switch(tokens[p].type)
 			{
 				case neg: return -k1;
+				case NOT: return !k1;
+				case pointer: return swaddr_read(k1, 4);
 				default: assert(0);
 			}
 	
@@ -232,13 +276,17 @@ int eval(int p, int q)
 				printf("Illegal Expression\n");
 			//	assert(k_right != 0);
 				return k_left / k_right;
+			case EQ: return k_left == k_right;
+			case UEQ: return k_left != k_right;
+			case AND: return k_left && k_right;
+			case OR: return k_left || k_right;
 			default:
 				assert(0);
 				break;
 		}
 	}
 	assert(1);
-	return -123;
+	return -250;
 }
 
 uint32_t expr(char *e, bool *success) {
