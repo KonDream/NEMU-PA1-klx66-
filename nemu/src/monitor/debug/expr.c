@@ -226,7 +226,7 @@ static uint32_t eval(int p, int q)
 		//		printf("Illegal Expression\n");
 			//	assert(k_right != 0);
 				printf("k_left: %d", k_left);
-				printf(" k_right: %d", k_right);
+				printf(" k_right: %d ", k_right);
 				return k_left / k_right;
 			default:
 				assert(0);
