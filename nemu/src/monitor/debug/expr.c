@@ -213,10 +213,10 @@ int eval(int p, int q)
 				int flag = 0;
 				for(i = R_EAX; i <= R_ESP; i ++)
 				{
-					if(strcpy(tokens[p].str, regsl[i]) == 0)
+					if(strcmp(tokens[p].str, regsl[i]) == 0)
 						break;
 				}
-				if(strcpy(tokens[p].str, "eip") == 0)
+				if(strcmp(tokens[p].str, "eip") == 0)
 				{
 					klx = cpu.eip;
 					flag = 1;
@@ -233,7 +233,7 @@ int eval(int p, int q)
 				int i;
 				for(i = R_AX; i <= R_SP; i ++)
 				{
-					if(strcpy(tokens[p].str, regsw[i]) == 0)
+					if(strcmp(tokens[p].str, regsw[i]) == 0)
 						break;
 				}
 				klx = reg_w(i);
@@ -244,7 +244,7 @@ int eval(int p, int q)
 				int i;
 				for(i = R_AL; i <= R_BH; i ++)
 				{
-					if(strcpy(tokens[p].str, regsb[i]) == 0)
+					if(strcmp(tokens[p].str, regsb[i]) == 0)
 						break;
 				}
 				klx = reg_b(i);
@@ -323,7 +323,6 @@ uint32_t expr(char *e, bool *success) {
 			tokens[i].priority = 6;
 		}
 	}
-	printf("nr_token: %d\n",nr_token);
 	int ans=eval(0, nr_token - 1);
 	return ans;
 	panic("please implement me");
