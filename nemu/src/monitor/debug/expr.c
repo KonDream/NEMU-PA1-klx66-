@@ -241,8 +241,11 @@ uint32_t expr(char *e, bool *success) {
 	int i;
 	for(i = 0; i < nr_token; i ++)
 	{
-		if(tokens[i].type == '-' && (i == 0 || tokens[i - 1].type == '+' || tokens[i - 1].type == '-' || tokens[i - 1].type == '*' || tokens[i - 1].type == '/'))
+		if(tokens[i].type == '-' && (i == 0 || tokens[i].type != num || tokens[i].type != hex || tokens[i].type != reg || tokens[i].type != var))
+		{
 			tokens[i].type = neg;
+			tokens[i].priority = 6;
+		}
 	}
 	return eval(0, nr_token - 1);
 	panic("please implement me");
