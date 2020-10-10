@@ -206,7 +206,7 @@ int eval(int p, int q)
 		sscanf(tokens[p].str, "%x", &klx);
 		if(tokens[p].type == reg)
 		{
-			if(strlen(tokens[p].str) == 3)
+			if(strlen(tokens[p].str) == 4)
 			{
 				int i;
 				for(i = R_EAX; i <= R_ESP; i ++)
