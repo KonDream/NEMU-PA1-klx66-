@@ -141,7 +141,7 @@ static int cmd_info(char *args)
 static int cmd_x(char *args)
 {
 	char *arg = strtok(args, " ");
-	char *arg1 = strtok(NULL, " ");
+	char *arg1 = strtok(NULL, "");
 	int klx = 1;
 	sscanf(arg, "%d", &klx);
 	swaddr_t address;
