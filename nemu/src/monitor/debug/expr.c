@@ -152,7 +152,7 @@ static bool check_parentheses(int p, int q)
 
 static uint32_t find_dominant_operator(int p, int q)
 {
-	int op = 1;
+	int op = 0;
 	int i, j;
 	int min_pri = 15;
 	for(i = p; i <= q; i ++)
@@ -172,7 +172,7 @@ static uint32_t find_dominant_operator(int p, int q)
 				flag ++;
 			if(tokens[j].type == ')')
 				flag --;
-		}
+		}// 2/-1
 		if(!klx)
 		continue;
 		if(tokens[i].priority <= min_pri)
