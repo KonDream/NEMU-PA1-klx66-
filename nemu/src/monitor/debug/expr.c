@@ -210,6 +210,7 @@ static uint32_t eval(int p, int q)
 			switch(tokens[p].type)
 			{
 				case neg: return -k1;
+				default: assert(0);
 			}
 	
 		}		
