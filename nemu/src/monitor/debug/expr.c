@@ -203,7 +203,7 @@ static uint32_t eval(int p, int q)
 	{
 		int op;
 		op = find_dominant_operator(p, q);
-		
+		printf("%d ", op);	
 		if(p == op || tokens[op].type == neg)
 		{
 			uint32_t k1 = eval(p + 1, q);
@@ -224,7 +224,6 @@ static uint32_t eval(int p, int q)
 			case 42: return k_left * k_right;
 			case 47: 
 				if(k_right == 0)
-				printf("Illegal Expression\n");
 			//	assert(k_right != 0);
 				printf("%d", k_right);
 				return k_left / k_right;
