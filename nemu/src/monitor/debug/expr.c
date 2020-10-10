@@ -209,6 +209,16 @@ static uint32_t eval(int p, int q)
 	{
 		int op;
 		op = find_dominant_operator(p, q);
+		
+		if(p == op || tokens[op].type == neg)
+		{
+			uint32_t k1 = eval(p + 1, q);
+			switch(tokens[op].type)
+			{
+				case neg: return -k1;
+			}
+	
+		}		
 
 		uint32_t k_left = eval(p, op - 1);
 		uint32_t k_right = eval(op + 1, q);
