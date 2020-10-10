@@ -125,7 +125,7 @@ static bool check_parentheses(int p, int q)
 {
 	int cnt = 0;
 	int i;
-	int flag = 0;
+	int flag = 1;
 	if(tokens[p].type == 40 && tokens[q].type == 41)
 	{
 	for(i = p + 1; i < q; i ++)
@@ -133,12 +133,12 @@ static bool check_parentheses(int p, int q)
 		if(tokens[i].type == 40)
 		{
 			cnt ++; 
-			flag = 1;
+			flag = 0;
 		}
 		else if(tokens[i].type == 41)
 		{
 			cnt --;
-			flag = 1;
+			flag = 0;
 		}
 		if(cnt < 0)
 		return false;
@@ -148,7 +148,7 @@ static bool check_parentheses(int p, int q)
 	return false;
 	}
 	return false;
-}
+}// (1+2)
 
 static uint32_t find_dominant_operator(int p, int q)
 {
@@ -187,7 +187,7 @@ static uint32_t find_dominant_operator(int p, int q)
 				break;
 		}
 	}
-	printf("%d", op);
+	printf("op: %d\n", op);
 	return op;
 }
 
