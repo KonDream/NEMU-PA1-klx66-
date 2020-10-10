@@ -204,7 +204,7 @@ static uint32_t eval(int p, int q)
 		int op;
 		op = find_dominant_operator(p, q);
 		printf("%d ", op);	
-		if(p == op || tokens[op].type == neg)
+		if(/*p == op || */tokens[op].type == neg)
 		{
 			uint32_t k1 = eval(p + 1, q);
 			switch(tokens[p].type)
