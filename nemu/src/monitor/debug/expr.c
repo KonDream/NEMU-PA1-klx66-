@@ -187,6 +187,7 @@ static uint32_t find_dominant_operator(int p, int q)
 				break;
 		}
 	}
+	printf("%d", op);
 	return op;
 }
 
