@@ -254,7 +254,6 @@ int eval(int p, int q)
 	{
 		int op;
 		op = find_dominant_operator(p, q);
-		printf("op: %d\n", op);
 		if(p == op || tokens[op].type == neg || tokens[op].type == pointer || tokens[op].type == NOT)
 		{
 			uint32_t k1 = eval(p + 1, q);
