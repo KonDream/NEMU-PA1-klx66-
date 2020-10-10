@@ -144,8 +144,8 @@ static int cmd_x(char *args)
 	char *arg1 = strtok(NULL, "");
 	int klx = 1;
 	sscanf(arg, "%d", &klx);
-	swaddr_t address;
-	sscanf(arg1, "%x", &address);
+	bool succe = true;
+	swaddr_t address = expr(arg1, &succe);
 	int i;
 	printf("0x%x:", address);
 	for(i = 0; i < klx; i ++)
