@@ -7,7 +7,7 @@
 #include <regex.h>
 
 enum {
-	NOTYPE = 256, EQ, UEQ, AND, OR, NOT, hex, num, var, reg, neg
+	NOTYPE = 256, EQ, UEQ, AND, OR, NOT, hex, num, var, reg, neg, pointer
 
 	/* TODO: Add more token types */
 
@@ -87,7 +87,7 @@ static bool make_token(char *e) {
 		for(i = 0; i < NR_REGEX; i ++) {
 			if(regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) { 	// first position
 				char *substr_start = e + position;
-//				char *tmp = e + position + 1;
+				char *tmp = e + position + 1;
 				int substr_len = pmatch.rm_eo;
 					
 				Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s", i, rules[i].regex, position, substr_len, substr_len, substr_start);
@@ -100,6 +100,12 @@ static bool make_token(char *e) {
 				
 			switch(rules[i].token_type) {
 				case 256: break;
+				case reg:
+					tokens[nr_token].type = rules[i].token_type;
+					tokens[nr_token].priority = rules[i].priority;
+					strncpy(tokens[nr_token].str, tmp, substr_len - 1);
+					tokens[nr_token].str[substr_len - 1] = '\0';
+					nr_token ++;
 				default:
 					tokens[nr_token].type = rules[i].token_type;
 					tokens[nr_token].priority = rules[i].priority;
@@ -193,7 +199,7 @@ int eval(int p, int q)
 	}
 	else if(p == q)
 	{
-		int klx;
+		uint32_t klx;
 		sscanf(tokens[p].str, "%d", &klx);
 		return klx;
 	}
@@ -251,6 +257,16 @@ uint32_t expr(char *e, bool *success) {
 			tokens[i].priority = 6;
 		}
 	}
+	
+	for(i = 0; i < nr_token; i ++)
+	{
+		if(tokens[i].type == '*' && ((i == 0) || (tokens[i - 1].type != num && tokens[i - 1].type != hex && tokens[i - 1].type != reg && tokens[i - 1].type != var && tokens[i - 1].type != ')')))
+		{
+			tokens[i].type = pointer;
+			tokens[i].priority = 6;
+		}
+	}
+
 	int ans=eval(0, nr_token - 1);
 	return ans;
 	panic("please implement me");
