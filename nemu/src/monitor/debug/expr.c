@@ -45,7 +45,7 @@ static struct rule {
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
 
 static regex_t re[NR_REGEX];
-long long eval(int p, int q);
+int eval(int p, int q);
 static uint32_t find_dominant_operator(int p, int q);
 static bool check_parentheses(int p, int q);
 
@@ -184,7 +184,7 @@ static uint32_t find_dominant_operator(int p, int q)
 	return op;
 }
 
-long long eval(int p, int q)
+int eval(int p, int q)
 {
 	if(p > q)
 	{
@@ -214,8 +214,8 @@ long long eval(int p, int q)
 	
 		}		
 
-		long long k_left = eval(p, op - 1);
-		long long k_right = eval(op + 1, q);
+		int k_left = eval(p, op - 1);
+		int k_right = eval(op + 1, q);
 		switch(tokens[op].type)
 		{
 			case 43: return k_left + k_right;
@@ -251,7 +251,7 @@ uint32_t expr(char *e, bool *success) {
 			tokens[i].priority = 6;
 		}
 	}
-	long long ans=eval(0, nr_token - 1);
+	int ans=eval(0, nr_token - 1);
 	return ans;
 	panic("please implement me");
 	return 0;
