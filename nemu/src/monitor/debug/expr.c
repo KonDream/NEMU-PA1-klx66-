@@ -168,9 +168,9 @@ static uint32_t find_dominant_operator(int p, int q)
 				klx = false;
 				break;
 			}
-			else if(tokens[i].type == '(')
+			if(tokens[i].type == '(')
 				flag --;
-			else if(tokens[i].type == ')')
+			if(tokens[i].type == ')')
 				flag ++;
 		}
 		if(!klx)
