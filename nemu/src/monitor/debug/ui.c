@@ -164,8 +164,6 @@ static int cmd_p(char *args)
 	num = expr(args, &success);
 	if(success)
 	printf("%d\n", num);
-	else
-	assert(0);
 	return 0;
 }
 
