@@ -22,6 +22,7 @@ static struct rule {
 	/* TODO: Add more rules.
 	 * Pay attention to the precedence level of different rules.
 	 */
+	{" +", NOTYPE, 0},					// space
 	{"\\+", '+', 4},					// plus
 	{"==", EQ, 3},						// equal
 	
