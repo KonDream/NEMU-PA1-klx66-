@@ -127,7 +127,7 @@ static int cmd_info(char *args)
 	}
 	printf("\n");
 
-	for(i = R_AL; i <= R_BH; i ++)
+	/*for(i = R_AL; i <= R_BH; i ++)
 	{
 	printf("%s: 0x%04x %d\n", regsb[i], cpu.gpr[i]._8[0], cpu.gpr[i]._8[0]);
 	}
@@ -138,7 +138,9 @@ static int cmd_info(char *args)
 	printf("%s: 0x%04x %d\n", regsb[i], cpu.gpr[i]._8[1], cpu.gpr[i]._8[1]);
 	}
 	printf("\n");
+	*/
 	
+	printf("eip: 0x%08x %d\n", cpu.eip, cpu.eip);
 	return 0;
 	}
 	return 0;
