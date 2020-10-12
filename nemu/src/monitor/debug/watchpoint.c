@@ -111,6 +111,7 @@ void delete_wp(int No)
 	WP *f;
 	f = &wp_pool[No];
 	free_wp(f);
+	printf("Delete watchpoint %d successfully\n", f->NO);
 }
 
 void info_wp()
