@@ -99,6 +99,8 @@ bool check_up()
 				continue;
 			}
 			printf("Watchpoint %d: %s\n", f->NO, f->EXp);
+			printf("Old value: %d\n", f->Val);
+			printf("New value: %d\n", tmp);
 			f->Val = tmp;	
 		}
 		f = f->next;
