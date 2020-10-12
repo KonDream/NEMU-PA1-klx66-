@@ -48,7 +48,7 @@ static int cmd_p(char *args);
 
 static int cmd_w(char *args);
 
-//static int cmd_d(char *args);
+static int cmd_d(char *args);
 
 static struct {
 	char *name;
@@ -64,7 +64,7 @@ static struct {
 	{ "x", "Scan memory", cmd_x },
 	{ "p", "Expression evalution", cmd_p },
 	{ "w", "Print out infomation in the watchpoints", cmd_w },
-//	{ "d", "Delete the watchpoint", cmd_d},
+	{ "d", "Delete the watchpoint", cmd_d},
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
@@ -189,6 +189,14 @@ static int cmd_w(char *args)
 	return 0;
 }
 
+static int cmd_d(char *args)
+{
+	int klx;
+	char *arg = strtok(args, " ");
+	sscanf(arg, "%d", &klx);
+	delete_wp(klx);
+	return 0;
+}
 
 void ui_mainloop() {
 	while(1) {
