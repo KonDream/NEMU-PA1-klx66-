@@ -73,7 +73,7 @@ void free_wp(WP *wp)
 		assert(0);
 	}
 	wp->next = NULL;
-	wp->val = 0;
+	wp->Val = 0;
 	wp->klx = 0;
 	wp->EXp[0] = '\0';
 }

@@ -46,6 +46,10 @@ static int cmd_x(char *args);
 
 static int cmd_p(char *args);
 
+static int cmd_w(char *args);
+
+//static int cmd_d(char *args);
+
 static struct {
 	char *name;
 	char *description;
@@ -59,6 +63,8 @@ static struct {
 	{ "info", "Output all value", cmd_info },
 	{ "x", "Scan memory", cmd_x },
 	{ "p", "Expression evalution", cmd_p },
+	{ "w", "Print out infomation in the watchpoints", cmd_w },
+//	{ "d", "Delete the watchpoint", cmd_d},
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
@@ -168,6 +174,21 @@ static int cmd_p(char *args)
 	assert(0);
 	return 0;
 }
+
+static int cmd_w(char *args)
+{
+	WP *f;
+	bool succ;
+	f = new_wp();
+	printf("Watchpoint %d: %s\n", f->NO, args);
+	strcpy(f->EXp, args);
+	f->Val = expr(args, &succ);
+	if(!succ)
+	Assert(1, "That is not right!\n");
+	printf("The value is: %d\n", f->Val);
+	return 0;
+}
+
 
 void ui_mainloop() {
 	while(1) {
