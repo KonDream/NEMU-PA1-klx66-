@@ -60,7 +60,7 @@ static struct {
 	{ "q", "Exit NEMU", cmd_q },
 	{ "si", "Run for n times", cmd_si },
 	/* TODO: Add more commands */
-	{ "info", "-r Output all value in registers\n, -w Output all value in watchpoints", cmd_info },
+	{ "info", "-r Output all value in registers\n    -w Output all value in watchpoints", cmd_info },
 	{ "x", "Scan memory", cmd_x },
 	{ "p", "Expression evalution", cmd_p },
 	{ "w", "Print out infomation in the watchpoints", cmd_w },
