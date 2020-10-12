@@ -143,6 +143,11 @@ static int cmd_info(char *args)
 	printf("eip: 0x%08x %d\n", cpu.eip, cpu.eip);
 	return 0;
 	}
+	else if(*arg == 'w')
+	{
+	info_wp();
+	return 0;
+	}
 	return 0;
 }
 
