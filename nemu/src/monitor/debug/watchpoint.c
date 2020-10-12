@@ -25,7 +25,7 @@ WP* new_wp()
 	WP *f, *k;
 	f = free_;
 	free_ = free_->next;
-	free_->next = NULL;
+	f->next = NULL;
 	k = head;
 	if(k == NULL)
 	{
@@ -94,7 +94,7 @@ bool check_up()
 			flag = false;
 			if(f->klx)
 			{
-				printf("Hit breakpoint %d at 0x%08x\n", f->NO, cpu.eip);
+				printf("Hit breakpoint %d at 0x%08x\n", f->klx, cpu.eip);
 				f = f->next;
 				continue;
 			}
@@ -113,7 +113,7 @@ void delete_wp(int No)
 	WP *f;
 	f = &wp_pool[No];
 	free_wp(f);
-	printf("Delete watchpoint %d successfully\n", f->NO);
+	printf("Delete watchpoint %d successfully\n", No);
 }
 
 void info_wp()
