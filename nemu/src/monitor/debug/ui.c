@@ -135,7 +135,7 @@ static int cmd_info(char *args)
 
 	for(i = R_AH; i <= R_BH; i ++)
 	{
-	printf("%s: 0x%04x %d\n", regsb[i], cpu.gpr[i]._8[0], cpu.gpr[i]._8[0]);
+	printf("%s: 0x%04x %d\n", regsb[i], cpu.gpr[i]._8[0], cpu.gpr[i]._8[0] + cpu.gpr[i]._8[1]);
 	}
 	printf("\n");
 	
