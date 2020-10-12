@@ -120,6 +120,8 @@ void info_wp()
 {
 	WP *f;
 	f = head;
+	if(f == NULL)
+	printf("There is nothing!!\n");
 	while(f != NULL)
 	{
 		printf("Watchpoint %d: %s = %d\n", f->NO, f->EXp, f->Val);
