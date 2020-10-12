@@ -124,7 +124,7 @@ void info_wp()
 	{
 		printf("Watchpoint %d: %s = %d\n", f->NO, f->EXp, f->Val);
 		f = f->next;
-		break;
+//		break;
 	}
 }
 
