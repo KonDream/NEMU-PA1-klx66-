@@ -237,9 +237,8 @@ int eval(int p, int q)
 				}
 				klx = reg_w(i);
 				}
-			}
-			else if(tokens[p].str[1] == 'l' || tokens[p].str[1] == 'h')
-			{
+				else if(tokens[p].str[1] == 'l' || tokens[p].str[1] == 'h')
+				{	
 				int i;
 				for(i = R_AL; i <= R_BH; i ++)
 				{
@@ -247,6 +246,7 @@ int eval(int p, int q)
 						break;
 				}
 				klx = reg_b(i);
+				}
 			}
 			else
 				assert(1);
