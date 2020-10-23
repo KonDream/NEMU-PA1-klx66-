@@ -172,7 +172,7 @@ static int find_dominated_op(int s, int e, bool *success) {
 
 uint32_t get_reg_val(const char*, bool *);
 
-static uint32_t eval(int s, int e, bool *success) {
+int eval(int s, int e, bool *success) {
 	if(s > e) {
 		// bad expression
 		*success = false;
@@ -214,9 +214,9 @@ static uint32_t eval(int s, int e, bool *success) {
 			}
 		}
 
-		uint32_t val1 = eval(s, dominated_op - 1, success);
+		int val1 = eval(s, dominated_op - 1, success);
 		if(!*success) { return 0; }
-		uint32_t val2 = eval(dominated_op + 1, e, success);
+		int val2 = eval(dominated_op + 1, e, success);
 		if(!*success) { return 0; }
 
 		switch(op_type) {
