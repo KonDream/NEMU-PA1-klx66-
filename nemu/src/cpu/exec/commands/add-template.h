@@ -8,14 +8,14 @@ static void do_execute() {
     int length = (DATA_BYTE << 3) - 1;
     int k1 = (op_dest->val) >> length;
     int k2 = (op_src->val) >> length;
-    cpu.ZF = !ans;
-    cpu.SF = ans >> length;
-    cpu.CF = ans < op_dest->val;
-    cpu.OF = (k1 == k2 && k1 != cpu.SF);
+    cpu.EFLAGS.ZF = !ans;
+    cpu.EFLAGS.SF = ans >> length;
+    cpu.EFLAGS.CF = ans < op_dest->val;
+    cpu.EFLAGS.OF = (k1 == k2 && k1 != cpu.EFLAGS.SF);
     ans ^= ans >> 4;
     ans ^= ans >> 2;
     ans ^= ans >> 1;
-    cpu.PF = !(ans & 1);
+    cpu.EFLAGS.PF = !(ans & 1);
     print_asm_template2();
 }
 

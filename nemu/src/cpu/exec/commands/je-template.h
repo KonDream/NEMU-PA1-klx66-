@@ -6,7 +6,7 @@ static void do_execute()
 {
     DATA_TYPE_S tmp = op_src->val;
     print_asm("je %x\n", cpu.eip + tmp + DATA_BYTE + 1);
-    if(cpu.ZF == 1)
+    if(cpu.EFLAGS.ZF == 1)
     cpu.eip += tmp;
 }
 

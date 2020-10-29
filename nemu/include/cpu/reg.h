@@ -43,8 +43,8 @@ typedef union {
 					uint32_t DF : 1;
 					uint32_t OF : 1;
 				};		
-				uint32_t EFLAGS;
-        	};
+				uint32_t val;
+        	}EFLAGS;
 		swaddr_t eip;	
      };
 
