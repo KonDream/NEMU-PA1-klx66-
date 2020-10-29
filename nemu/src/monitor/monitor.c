@@ -88,7 +88,7 @@ void restart() {
 	cpu.eip = ENTRY_START;
 
 
-	cpu.EFLAGS.val = 2;
+	//cpu.EFLAGS.val = 2;
 	/* Initialize DRAM. */
 	init_ddr3();
 }
