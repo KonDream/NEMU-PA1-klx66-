@@ -7,6 +7,7 @@
 #include "commands/test.h"
 #include "commands/je.h"
 #include "commands/cmp.h"
+#include "commands/pop.h"
 /*~~~~~~~~~~~~~*/
 #include "data-mov/xchg.h"
 #include "data-mov/movext.h"
