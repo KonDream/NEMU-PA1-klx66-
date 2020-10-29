@@ -12,7 +12,7 @@ make_helper(concat(ret_n_, SUFFIX))
 
 make_helper(concat(ret_i_, SUFFIX))
 {
-    swaddr_t addr = instr_fetch(eip + 1, 2);
+    int addr = instr_fetch(eip + 1, 2);
     cpu.eip = MEM_R(REG(R_ESP));
     cpu.eip &= 0xffff;
     REG(R_ESP) += 2 + addr;
