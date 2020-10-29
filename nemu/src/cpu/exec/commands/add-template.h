@@ -1,17 +1,17 @@
 #include "cpu/exec/template-start.h"
 
-#define instr cmp
+#define instr add
 
-static void do_execute()
-{
-    DATA_TYPE ans = op_dest->val - op_src->val;
+static void do_execute() {
+	DATA_TYPE ans = op_dest->val + op_src->val;
+    OPERAND_W(op_dest, ans);
     int length = (DATA_BYTE << 3) - 1;
     int k1 = (op_dest->val) >> length;
     int k2 = (op_src->val) >> length;
     cpu.ZF = !ans;
     cpu.SF = ans >> length;
-    cpu.CF = op_dest->val < op_src->val;
-    cpu.OF = (k1 != k2 && k2 == cpu.SF);
+    cpu.CF = ans < op_dest->val;
+    cpu.OF = (k1 == k2 && k1 != cpu.SF);
     ans ^= ans >> 4;
     ans ^= ans >> 2;
     ans ^= ans >> 1;

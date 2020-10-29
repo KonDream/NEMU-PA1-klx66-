@@ -6,7 +6,10 @@
 #include "commands/push.h"
 #include "commands/test.h"
 #include "commands/je.h"
+
 #include "commands/cmp.h"
+#include "commands/add.h"
+
 #include "commands/pop.h"
 #include "commands/ret.h"
 /*~~~~~~~~~~~~~*/
