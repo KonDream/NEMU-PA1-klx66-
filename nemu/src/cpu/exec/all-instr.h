@@ -2,7 +2,7 @@
 
 #include "data-mov/mov.h"
 /* Add by klx*/
-//#include "data-mov/call.h"
+#include "commands/call.h"
 /*~~~~~~~~~~~~~*/
 #include "data-mov/xchg.h"
 #include "data-mov/movext.h"
