@@ -6,7 +6,7 @@ make_helper(concat(call_i_, SUFFIX))
 {
     int length = concat(decode_i_, SUFFIX) (eip + 1);
     reg_l(R_ESP) -= DATA_BYTE;
-    swaddr_write(reg_l(R_ESP), 4, cpu.eip + length);
+    swaddr_write(reg_l(R_ESP), 4, cpu.eip + length + 1);
     cpu.eip += op_src->val;
     print_asm("call %x", cpu.eip + 1 + length);
     return length + 1;
