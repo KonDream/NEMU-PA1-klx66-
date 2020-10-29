@@ -12,7 +12,7 @@
 #include "commands/sub.h"
 
 #include "commands/pop.h"
-#include "commands/ret.h"
+//#include "commands/ret.h"
 /*~~~~~~~~~~~~~*/
 #include "data-mov/xchg.h"
 #include "data-mov/movext.h"
