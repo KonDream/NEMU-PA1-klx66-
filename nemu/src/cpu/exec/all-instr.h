@@ -8,6 +8,7 @@
 #include "commands/je.h"
 #include "commands/cmp.h"
 #include "commands/pop.h"
+#include "commands/ret.h"
 /*~~~~~~~~~~~~~*/
 #include "data-mov/xchg.h"
 #include "data-mov/movext.h"
