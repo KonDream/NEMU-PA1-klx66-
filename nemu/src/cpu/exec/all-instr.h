@@ -9,6 +9,7 @@
 
 #include "commands/cmp.h"
 #include "commands/add.h"
+#include "commands/sub.h"
 
 #include "commands/pop.h"
 #include "commands/ret.h"
