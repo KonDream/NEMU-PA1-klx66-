@@ -4,6 +4,7 @@
 /* Add by klx*/
 #include "commands/call.h"
 #include "commands/push.h"
+#include "commands/test.h"
 /*~~~~~~~~~~~~~*/
 #include "data-mov/xchg.h"
 #include "data-mov/movext.h"
