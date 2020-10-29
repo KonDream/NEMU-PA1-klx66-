@@ -3,6 +3,7 @@
 #include "data-mov/mov.h"
 /* Add by klx*/
 #include "commands/call.h"
+#include "commands/push.h"
 /*~~~~~~~~~~~~~*/
 #include "data-mov/xchg.h"
 #include "data-mov/movext.h"
