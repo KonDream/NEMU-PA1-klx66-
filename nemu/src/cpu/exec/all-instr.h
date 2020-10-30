@@ -2,17 +2,17 @@
 
 #include "data-mov/mov.h"
 /* Add by klx*/
-#include "commands/call.h"
-#include "commands/push.h"
-#include "commands/test.h"
-#include "commands/je.h"
+#include "control-tran/call.h"
+#include "data-mov/push.h"
+#include "logic/test.h"
+#include "control-tran/je.h"
 
-#include "commands/cmp.h"
-#include "commands/add.h"
-#include "commands/sub.h"
+#include "arith/cmp.h"
+#include "arith/add.h"
+#include "arith/sub.h"
 
-#include "commands/pop.h"
-#include "commands/ret.h"
+#include "data-mov/pop.h"
+#include "control-tran/ret.h"
 /*~~~~~~~~~~~~~*/
 #include "data-mov/xchg.h"
 #include "data-mov/movext.h"
