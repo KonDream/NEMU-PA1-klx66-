@@ -4,8 +4,11 @@
 
 static void do_execute()
 {
-    OPERAND_W(op_src, swaddr_read(REG(R_ESP), DATA_BYTE));
-    REG(R_ESP) += DATA_BYTE;
+    if(DATA_BYTE != 1)
+    {
+        OPERAND_W(op_src, swaddr_read(REG(R_ESP), DATA_BYTE));
+        REG(R_ESP) += DATA_BYTE;
+    }
     print_asm_template1();
 }
 
