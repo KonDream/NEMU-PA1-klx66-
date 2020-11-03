@@ -6,10 +6,10 @@ static void do_execute()
 {
     DATA_TYPE_S tmp = op_src->val;
     if(op_src->type == OP_TYPE_IMM)
-    cpu.eip += tmp;
+    cpu.eip += tmp + 1;
     else
     {
-        cpu.eip = tmp - concat(decode_rm_, SUFFIX)(cpu.eip);
+        cpu.eip = tmp - concat(decode_rm_, SUFFIX)(cpu.eip + 1) - 1;
 
     }
     print_asm_template1();
