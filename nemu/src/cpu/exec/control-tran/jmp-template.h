@@ -9,7 +9,7 @@ static void do_execute()
     cpu.eip += tmp;
     else
     {
-        cpu.eip = tmp - concat(decode_rm_, SUFFIX)(cpu.eip + 1) - 1;
+        cpu.eip = tmp - concat(decode_rm_, SUFFIX)(cpu.eip + 1);
 
     }
     print_asm_template1();
