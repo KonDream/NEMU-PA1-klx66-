@@ -10,7 +10,7 @@ make_helper(concat(ret_n_, SUFFIX))
     return 1;
 }
 
-/*make_helper(concat(ret_i_, SUFFIX))
+make_helper(concat(ret_i_, SUFFIX))
 {
     int addr = instr_fetch(eip + 1, 2);
     cpu.eip = MEM_R(REG(R_ESP));
@@ -23,6 +23,6 @@ make_helper(concat(ret_n_, SUFFIX))
     REG(R_ESP) += addr;
     print_asm("ret $0x%x", addr);
     return 1;
-}*/
+}
 
 #include "cpu/exec/template-end.h"
