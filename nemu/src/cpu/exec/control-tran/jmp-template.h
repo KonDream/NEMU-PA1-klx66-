@@ -6,7 +6,7 @@ static void do_execute()
 {
     DATA_TYPE_S tmp = op_src->val;
     if(op_src->type == OP_TYPE_IMM)
-    cpu.eip += tmp + 1;
+    cpu.eip += tmp;
     else
     {
         cpu.eip = tmp - concat(decode_rm_, SUFFIX)(cpu.eip + 1) - 1;
