@@ -4,7 +4,7 @@
 
 static void do_execute()
 {
-    op_src->val = (int8_t)op_src->val - 1;
+    op_src->val = (int8_t)op_src->val;
     reg_l(R_ESP) -= 4;
     swaddr_write(reg_l(R_ESP), 4, op_src->val);
     print_asm("push 0x%x\n", op_src->val);
