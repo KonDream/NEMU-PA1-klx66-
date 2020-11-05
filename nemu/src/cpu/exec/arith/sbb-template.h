@@ -10,7 +10,7 @@ static void do_execute()
     else
         ans = op_dest->val - (op_src->val + cpu.EFLAGS.CF);
     OPERAND_W(op_dest, ans);
-   /* int len = (DATA_BYTE << 3) - 1;
+    int len = (DATA_BYTE << 3) - 1;
     int k1 = op_dest->val >> len;
     int k2 = op_src->val >> len;
     cpu.EFLAGS.ZF = !ans;
@@ -20,7 +20,7 @@ static void do_execute()
     ans ^= ans >> 4;
     ans ^= ans >> 2;
     ans ^= ans >> 1;
-    cpu.EFLAGS.PF = !(ans & 1);*/
+    cpu.EFLAGS.PF = !(ans & 1);
     print_asm_template2();
 }
 
