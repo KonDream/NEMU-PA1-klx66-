@@ -28,6 +28,8 @@
 #include "control-tran/jl.h"
 #include "control-tran/jge.h"
 #include "control-tran/ja.h"
+
+#include "string/lods.h"
 /*~~~~~~~~~~~~~*/
 #include "data-mov/xchg.h"
 #include "data-mov/movext.h"
