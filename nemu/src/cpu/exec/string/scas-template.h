@@ -4,7 +4,9 @@
 
 make_helper(concat(scas_, SUFFIX))
 {
-    uint32_t ans = REG(R_EAX) - MEM_R(reg_l(R_EDI));
+    swaddr_t k = REG(R_EAX);
+    swaddr_t l = MEM_R(reg_l(R_EDI));
+    uint32_t ans = k - l;
     if(cpu.EFLAGS.DF == 0)
     reg_l(R_EDI) += DATA_BYTE;
     else
@@ -12,9 +14,9 @@ make_helper(concat(scas_, SUFFIX))
     int len = (DATA_BYTE << 3) - 1;
     cpu.EFLAGS.ZF = !ans;
     cpu.EFLAGS.SF = ans >> len;
-    cpu.EFLAGS.CF = REG(R_EAX) < MEM_R(reg_l(R_EDI));
-    int k1 = REG(R_EAX) >> len;
-    int k2 = MEM_R(reg_l(R_EDI)) >> len;
+    cpu.EFLAGS.CF = k < l;
+    int k1 = k >> len;
+    int k2 = l >> len;
     cpu.EFLAGS.OF = (k1 != k2 && k2 == cpu.EFLAGS.SF);
     ans ^= ans >> 4;
     ans ^= ans >> 2;
