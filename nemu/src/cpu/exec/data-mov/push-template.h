@@ -10,7 +10,7 @@ static void do_execute()
         MEM_W(cpu.esp, op_src->val);
     }
     else {
-        if(DATA_BYTE == 1)
+       // if(DATA_BYTE == 1)
         op_src->val = (int8_t)op_src->val;
         reg_l(R_ESP) -= 4;
         swaddr_write(reg_l(R_ESP), 4, op_src->val);
