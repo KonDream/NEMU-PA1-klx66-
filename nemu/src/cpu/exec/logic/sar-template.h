@@ -11,8 +11,8 @@ static void do_execute () {
 	OPERAND_W(op_dest, dest);
 
 	/* TODO: Update EFLAGS. */
-	panic("please implement me");
-
+	//panic("please implement me");
+	cpu.EFLAGS.CF = 0;
 	print_asm_template2();
 }
 
