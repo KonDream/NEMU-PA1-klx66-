@@ -19,6 +19,7 @@
 #include "control-tran/ret.h"
 #include "control-tran/jmp.h"
 #include "control-tran/jbe.h"
+#include "control-tran/jne.h"
 /*~~~~~~~~~~~~~*/
 #include "data-mov/xchg.h"
 #include "data-mov/movext.h"
