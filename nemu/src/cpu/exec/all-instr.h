@@ -5,6 +5,7 @@
 
 #include "data-mov/push.h"
 #include "data-mov/pop.h"
+#include "data-mov/movs.h"
 
 #include "logic/test.h"
 #include "logic/setne.h"
