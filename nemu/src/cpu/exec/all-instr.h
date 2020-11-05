@@ -30,6 +30,7 @@
 #include "control-tran/ja.h"
 
 #include "string/lods.h"
+#include "string/scas.h"
 /*~~~~~~~~~~~~~*/
 #include "data-mov/xchg.h"
 #include "data-mov/movext.h"
