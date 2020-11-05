@@ -7,6 +7,7 @@
 #include "data-mov/pop.h"
 
 #include "logic/test.h"
+#include "logic/setne.h"
 
 #include "arith/cmp.h"
 #include "arith/add.h"
