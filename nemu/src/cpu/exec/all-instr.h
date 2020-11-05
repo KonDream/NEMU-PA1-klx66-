@@ -22,6 +22,7 @@
 #include "control-tran/jne.h"
 #include "control-tran/jle.h"
 #include "control-tran/jg.h"
+#include "control-tran/jl.h"
 /*~~~~~~~~~~~~~*/
 #include "data-mov/xchg.h"
 #include "data-mov/movext.h"
