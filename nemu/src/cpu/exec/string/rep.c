@@ -29,8 +29,8 @@ make_helper(rep) {
 			if((ops_decoded.opcode == 0xa6	
 				|| ops_decoded.opcode == 0xa7	
 				|| ops_decoded.opcode == 0xae	
-				|| ops_decoded.opcode == 0xaf) && cpu.EFLAGS.ZF == 0)
-				break;
+				|| ops_decoded.opcode == 0xaf) && cpu.EFLAGS.ZF == 0) break;
+				//break;
 		}
 		len = 1;
 	}
