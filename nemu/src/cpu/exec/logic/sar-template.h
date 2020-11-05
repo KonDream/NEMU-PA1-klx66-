@@ -12,7 +12,7 @@ static void do_execute () {
 
 	/* TODO: Update EFLAGS. */
 	//panic("please implement me");
-	//cpu.EFLAGS.CF = 0;
+	cpu.EFLAGS.CF = 0;
 	print_asm_template2();
 }
 
