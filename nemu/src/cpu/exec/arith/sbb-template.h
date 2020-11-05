@@ -6,7 +6,7 @@ static void do_execute()
 {
     DATA_TYPE ans;
     if(op_src->size == 1 && op_dest->size != 1)
-        ans = op_dest->val - ((int32_t)op_src->val + cpu.EFLAGS.CF);
+        ans = op_dest->val - ((int32_t)(op_src->val) + cpu.EFLAGS.CF);
     else
         ans = op_dest->val - (op_src->val - cpu.EFLAGS.CF);
     OPERAND_W(op_dest, ans);
