@@ -20,6 +20,7 @@
 #include "control-tran/jmp.h"
 #include "control-tran/jbe.h"
 #include "control-tran/jne.h"
+#include "control-tran/jle.h"
 /*~~~~~~~~~~~~~*/
 #include "data-mov/xchg.h"
 #include "data-mov/movext.h"
