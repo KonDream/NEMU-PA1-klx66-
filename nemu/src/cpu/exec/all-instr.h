@@ -8,6 +8,7 @@
 
 #include "logic/test.h"
 #include "logic/setne.h"
+#include "logic/sete.h"
 
 #include "arith/cmp.h"
 #include "arith/add.h"
