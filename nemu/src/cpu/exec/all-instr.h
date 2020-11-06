@@ -28,6 +28,7 @@
 #include "control-tran/jl.h"
 #include "control-tran/jge.h"
 #include "control-tran/ja.h"
+#include "control-tran/js.h"
 
 #include "string/lods.h"
 #include "string/scas.h"
