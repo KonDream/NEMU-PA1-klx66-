@@ -2,8 +2,8 @@
 
 FLOAT F_mul_F(FLOAT a, FLOAT b) {
 	//nemu_assert(0);
-	long long ans = (long long)a * (long long)b;
-	return (FLOAT)ans >> 16;
+	long long ans = a * b;
+	return ans >> 16;
 }
 
 FLOAT F_div_F(FLOAT a, FLOAT b) {
@@ -61,31 +61,36 @@ FLOAT f2F(float a) {
 	 * stack. How do you retrieve it to another variable without
 	 * performing arithmetic operations on it directly?
 	 */
-	int val = *(int*)&a;
+	void *temp = &a;
+	int val = *(int*)temp;
 	int sign = val >> 31;
 	int exp = (val >> 23) & 0xff;
-	FLOAT ans = val & 0x7fffff;
+	int ans = val & 0x007fffff;
 
 	if(sign)
 		sign = -1;
 	else
 		sign = 1;
 
-	if(exp != 0)
-		ans += 1 << 23;
-	exp -= 150;
+	if(exp == 0)
+		return 0;
+	if(exp == 0xff)
+		return sign * 0x7fffffff;
 
-	if(exp > -16)
-		ans <<= exp + 16;
-	if(exp < -16)
-		ans >>= -exp - 16;
+	exp -= 134;
+	ans |= 1 << 23;
+
+	if(exp > 0)
+		ans <<= exp;
+	if(exp < 0)
+		ans >>= -exp;
 	//nemu_assert(0);
-	return sign == 0 ? ans : -ans;
+	return sign * ans;
 }
 
 FLOAT Fabs(FLOAT a) {
 	//nemu_assert(0);
-	return a >= 0 ? -a : a;
+	return a >= 0 ? a : -a;
 }
 
 /* Functions below are already implemented */
