@@ -65,7 +65,7 @@ FLOAT f2F(float a) {
 	int val = *(int*)temp;
 	int sign = val >> 31;
 	int exp = (val >> 23) & 0xff;
-	int ans = val & 0x007fffff;
+	int ans = val & 0x7fffff;
 
 	if(sign)
 		sign = -1;
