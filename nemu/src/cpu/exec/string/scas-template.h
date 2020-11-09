@@ -6,7 +6,7 @@ make_helper(concat(scas_, SUFFIX))
 {
     swaddr_t k = REG(R_EAX);
     swaddr_t l = MEM_R(reg_l(R_EDI));
-    DATA_TYPE ans = k - l;
+    uint32_t ans = k - l;
     if(cpu.EFLAGS.DF == 0)
     reg_l(R_EDI) += DATA_BYTE;
     else
