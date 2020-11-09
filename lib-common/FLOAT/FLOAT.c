@@ -71,20 +71,16 @@ FLOAT f2F(float a) {
 	else
 		sign = 1;
 
-	if(exp == 0)
-		return 0;
-	if(exp == 0xff)
-		return sign * 0x7fffff;
+	if(exp != 0)
+		ans += 1 << 23;
+	exp -= 150;
 
-	exp -= 134;
-	ans |= 1 << 23;
-
-	if(exp > 0)
-		ans <<= exp;
-	if(exp < 0)
-		ans >>= -exp;
+	if(exp > -16)
+		ans <<= exp + 16;
+	if(exp < -16)
+		ans >>= -exp - 16;
 	//nemu_assert(0);
-	return sign * ans;
+	return sign == 0 ? ans : -ans;
 }
 
 FLOAT Fabs(FLOAT a) {
