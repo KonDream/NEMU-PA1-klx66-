@@ -74,7 +74,7 @@ FLOAT f2F(float a) {
 	if(exp == 0)
 		return 0;
 	if(exp == 0xff)
-		return sign * 0x7fffffff;
+		return sign * 0x7fffff;
 
 	exp -= 134;
 	ans |= 1 << 23;
