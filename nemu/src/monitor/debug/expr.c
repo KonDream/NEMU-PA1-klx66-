@@ -99,9 +99,8 @@ static bool make_token(char *e) {
                                         case NUM:
 					//default: panic("please implement me");
                                         case REG: sprintf(tokens[nr_token].str, "%.*s", substr_len, substr_start);
-										/*case VAR: 
-											bool suc = true;
-											tokens[nr_token].str = */
+										case VAR: sprintf(tokens[nr_token].str, "%.*s", substr_len, substr_start);
+											
 					default: tokens[nr_token].type = rules[i].token_type;
 
 							 nr_token ++;
