@@ -8,7 +8,7 @@ char *strtab = NULL;
 Elf32_Sym *symtab = NULL;
 int nr_symtab_entry;
 
-uint32_t get_VAR_val(char *var, bool *suc)
+uint32_t get_VAR_val(const char *var, bool *suc)
 {
 	*suc = true;
 	int i, len = strlen(var);
