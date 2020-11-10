@@ -33,6 +33,7 @@
 #include "control-tran/jo.h"
 #include "control-tran/jno.h"
 #include "control-tran/jp.h"
+#include "control-tran/jnp.h"
 
 #include "string/lods.h"
 #include "string/scas.h"
