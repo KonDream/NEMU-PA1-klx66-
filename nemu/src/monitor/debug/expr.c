@@ -47,7 +47,9 @@ static struct rule {
 
 static regex_t re[NR_REGEX];
 
-uint32_t get_VAR_val(char *var, bool *suc);
+static char *strtab = NULL;
+static Elf32_Sym *symtab = NULL;
+static int nr_symtab_entry;
 /* Rules are used for many times.
  * Therefore we compile them only once before any usage.
  */
@@ -186,14 +188,33 @@ int eval(int s, int e, bool *success) {
 	}
 	else if(s == e) {
 		// single token
-		uint32_t val;
+		uint32_t val = 0;
 		switch(tokens[s].type) {
-			case REG: val = get_reg_val(tokens[s].str + 1, success);	// +1 to skip '$'
+			case REG: 
+					  {
+						  val = get_reg_val(tokens[s].str + 1, success);	// +1 to skip '$'
 					  if(!*success) { return 0; }
 					  break;
+					  }
 
 			case NUM: val = strtol(tokens[s].str, NULL, 0); break;
-			case VAR: val = get_VAR_val(tokens[s].str + 1, success); break;
+			case VAR:
+			{
+					int i;
+					for(i = 0; i < nr_symtab_entry; ++ i)
+					{
+						if((symtab[i].st_info & 0xf) == STT_OBJECT)
+						{
+							char tmp[32];
+							int tmp_len = symtab[i + 1].st_name - symtab[i].st_name - 1;
+							strncpy(tmp, strtab + symtab[i].st_name, tmp_len);
+							tmp[tmp_len] = '\0';
+							if(strcpy(tmp, tokens[s].str) == 0)
+								val = symtab[i].st_value;
+						}
+					}
+					break;
+			}
 			default: assert(0);
 		}
 
