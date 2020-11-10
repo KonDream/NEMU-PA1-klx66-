@@ -30,6 +30,7 @@
 #include "control-tran/ja.h"
 #include "control-tran/js.h"
 #include "control-tran/jns.h"
+#include "control-tran/jo.h"
 
 #include "string/lods.h"
 #include "string/scas.h"
