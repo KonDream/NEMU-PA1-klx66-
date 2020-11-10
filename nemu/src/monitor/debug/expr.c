@@ -101,7 +101,7 @@ static bool make_token(char *e) {
                                         case NOTYPE: break;
                                         case NUM:
 					//default: panic("please implement me");
-                                        case REG: sprintf(tokens[nr_token].str, "%.*s", substr_len, substr_start);
+                                        case REG: sprintf(tokens[nr_token].str, "%.*s", substr_len, substr_start); break;
 										/*case VAR: 
 											bool suc = true;
 											tokens[nr_token].str = */
