@@ -47,6 +47,7 @@ static struct rule {
 
 static regex_t re[NR_REGEX];
 
+uint32_t get_VAR_val(char *var, bool *suc);
 /* Rules are used for many times.
  * Therefore we compile them only once before any usage.
  */
@@ -99,6 +100,9 @@ static bool make_token(char *e) {
                                         case NUM:
 					//default: panic("please implement me");
                                         case REG: sprintf(tokens[nr_token].str, "%.*s", substr_len, substr_start);
+										/*case VAR: 
+											bool suc = true;
+											tokens[nr_token].str = */
 					default: tokens[nr_token].type = rules[i].token_type;
 							 nr_token ++;
 				}
