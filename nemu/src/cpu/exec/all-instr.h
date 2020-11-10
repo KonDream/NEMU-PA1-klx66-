@@ -35,6 +35,7 @@
 #include "control-tran/jp.h"
 #include "control-tran/jnp.h"
 #include "control-tran/jb.h"
+#include "control-tran/jae.h"
 
 #include "string/lods.h"
 #include "string/scas.h"
