@@ -47,9 +47,6 @@ static struct rule {
 
 static regex_t re[NR_REGEX];
 
-extern char *strtab;
-extern Elf32_Sym *symtab;
-extern int nr_symtab_entry;
 /* Rules are used for many times.
  * Therefore we compile them only once before any usage.
  */
@@ -179,6 +176,7 @@ static int find_dominated_op(int s, int e, bool *success) {
 	return dominated_op;
 }
 
+uint32_t get_VAR_val(const char*, bool *);
 uint32_t get_reg_val(const char*, bool *);
 
 int eval(int s, int e, bool *success) {
@@ -198,18 +196,11 @@ int eval(int s, int e, bool *success) {
 			case NUM: val = strtol(tokens[s].str, NULL, 0); break;
 			case VAR:
 			{
-					int i;
-					for(i = 0; i < nr_symtab_entry; ++ i)
+					val = get_VAR_val(tokens[s].str, success);
+					if(!*success)
 					{
-						if((symtab[i].st_info & 0xf) == STT_OBJECT)
-						{
-							char tmp[32];
-							int tmp_len = symtab[i + 1].st_name - symtab[i].st_name - 1;
-							strncpy(tmp, strtab + symtab[i].st_name, tmp_len);
-							tmp[tmp_len] = '\0';
-							if(strcpy(tmp, tokens[s].str) == 0)
-								val = symtab[i].st_value;
-						}
+						printf("Bad var name : %s !\n", tokens[s].str);
+						return 0;
 					}
 					break;
 			}

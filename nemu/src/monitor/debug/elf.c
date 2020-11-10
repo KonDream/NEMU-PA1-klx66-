@@ -8,23 +8,23 @@ char *strtab = NULL;
 Elf32_Sym *symtab = NULL;
 int nr_symtab_entry;
 
-// uint32_t get_VAR_val(char *var, bool *suc)
-// {
-// 	int i, len = strlen(var);
-// 	for(i = 0; i < nr_symtab_entry; ++ i)
-// 	{
-// 		if((symtab[i].st_info & 0xf) == STT_OBJECT)
-// 		{
-// 			char var_name[len + 5];
-// 			strncpy(var_name, strtab + symtab[i].st_name, len);
-// 			var_name[len] = '\0';
-// 			if(strcmp(var_name, var) == 0)
-// 			return symtab[i].st_value;
-// 		}
-// 	}
-// 	*suc = false;
-// 	return 0;
-// }
+uint32_t get_VAR_val(char *var, bool *suc)
+{
+	int i, len = strlen(var);
+	for(i = 0; i < nr_symtab_entry; ++ i)
+	{
+		if((symtab[i].st_info & 0xf) == STT_OBJECT)
+		{
+			char var_name[len + 5];
+			strncpy(var_name, strtab + symtab[i].st_name, len);
+			var_name[len] = '\0';
+			if(strcmp(var_name, var) == 0)
+			return symtab[i].st_value;
+		}
+	}
+	*suc = false;
+	return 0;
+}
 
 // void get_Bt(swaddr_t eip, char* str)
 // {
