@@ -193,7 +193,7 @@ int eval(int s, int e, bool *success) {
 					  break;
 
 			case NUM: val = strtol(tokens[s].str, NULL, 0); break;
-			case VAR: val = get_VAR_val(tokens[s].str, success); break;
+			case VAR: val = get_VAR_val(tokens[s].str + 1, success); break;
 			default: assert(0);
 		}
 
