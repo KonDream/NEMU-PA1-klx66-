@@ -10,6 +10,7 @@ int nr_symtab_entry;
 
 uint32_t get_VAR_val(char *var, bool *suc)
 {
+	*suc = true;
 	int i, len = strlen(var);
 	for(i = 0; i < nr_symtab_entry; ++ i)
 	{
