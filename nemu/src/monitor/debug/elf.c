@@ -30,21 +30,21 @@ uint32_t get_VAR_val(const char *var, bool *suc)
 	return 0;
 }
 
-// void get_Bt(swaddr_t eip, char* str)
-// {
-// 	int i;
-// 	for(i = 0; i < nr_symtab_entry; ++ i)
-// 	{
-// 		if(symtab[i].st_value <= eip
-// 			&& symtab[i].st_value + symtab[i].st_size >= eip
-// 			&& (symtab[i].st_info & 0xf) == STT_FUNC)
-// 		{
-// 			strcpy(str, strtab + symtab[i].st_name);
-// 			return;
-// 		}
-// 	}
-// 	str[0] = '\0';
-// }
+void get_Bt(swaddr_t eip, char* str)
+{
+	int i;
+	for(i = 0; i < nr_symtab_entry; ++ i)
+	{
+		if(symtab[i].st_value <= eip
+			&& symtab[i].st_value + symtab[i].st_size >= eip
+			&& (symtab[i].st_info & 0xf) == STT_FUNC)
+		{
+			strcpy(str, strtab + symtab[i].st_name);
+			return;
+		}
+	}
+	str[0] = '\0';
+}
 
 void load_elf_tables(int argc, char *argv[]) {
 	int ret;
