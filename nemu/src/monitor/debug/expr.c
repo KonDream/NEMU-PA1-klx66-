@@ -198,7 +198,6 @@ int eval(int s, int e, bool *success) {
 					val = get_VAR_val(tokens[s].str, success);
 					if(!*success)
 					{
-						printf("Bad var name : %s !\n", tokens[s].str);
 						return 0;
 					}
 					break;
