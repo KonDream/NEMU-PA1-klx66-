@@ -17,7 +17,7 @@ uint32_t get_VAR_val(const char *var, bool *suc)
 	{
 		if((symtab[i].st_info & 0xf) == STT_OBJECT)
 		{
-			char var_name[len + 5];
+			char var_name[32];
 			strncpy(var_name, strtab + symtab[i].st_name, len);
 			var_name[len] = '\0';
 			if(strcmp(var_name, var) == 0)
