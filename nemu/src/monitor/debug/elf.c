@@ -12,12 +12,14 @@ uint32_t get_VAR_val(const char *var, bool *suc)
 {
 	printf("%s\n", var);
 	*suc = true;
-	int i, len = strlen(var);
+	int i, len;
 	for(i = 0; i < nr_symtab_entry; ++ i)
 	{
 		if((symtab[i].st_info & 0xf) == STT_OBJECT)
 		{
-			char var_name[32];
+			char *temp = strtab + symtab[i].st_name;
+			len = strlen(temp);
+			char var_name[len + 5];
 			strncpy(var_name, strtab + symtab[i].st_name, len);
 			var_name[len] = '\0';
 			if(strcmp(var_name, var) == 0)
