@@ -144,7 +144,7 @@ static int find_dominated_op(int s, int e, bool *success) {
 	int dominated_op = -1;
 	for(i = s; i <= e; i ++) {
 		switch(tokens[i].type) {
-			case REG: case NUM: break;
+			case REG: case NUM: case VAR: break;
 
 			case '(': 
 				bracket_level ++; 
