@@ -47,9 +47,9 @@ static struct rule {
 
 static regex_t re[NR_REGEX];
 
-static char *strtab = NULL;
-static Elf32_Sym *symtab = NULL;
-static int nr_symtab_entry;
+extern char *strtab;
+extern Elf32_Sym *symtab;
+extern int nr_symtab_entry;
 /* Rules are used for many times.
  * Therefore we compile them only once before any usage.
  */
@@ -101,11 +101,12 @@ static bool make_token(char *e) {
                                         case NOTYPE: break;
                                         case NUM:
 					//default: panic("please implement me");
-                                        case REG: sprintf(tokens[nr_token].str, "%.*s", substr_len, substr_start); break;
+                                        case REG: sprintf(tokens[nr_token].str, "%.*s", substr_len, substr_start);
 										/*case VAR: 
 											bool suc = true;
 											tokens[nr_token].str = */
 					default: tokens[nr_token].type = rules[i].token_type;
+
 							 nr_token ++;
 				}
 
