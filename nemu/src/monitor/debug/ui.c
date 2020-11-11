@@ -142,7 +142,7 @@ static int cmd_bt(char *args) {
 		if(str[0] == '\0')
 		break;
 		printf("#%d\t0x%08x:\t%s\targ1:0x%08x arg2:0x%08x arg3:0x%08x arg4:0x%08x\n",
-				cnt, ebp, str,
+				cnt, eip, str,
 				swaddr_read(ebp + 8, 4), swaddr_read(ebp + 12, 4),
 				swaddr_read(ebp + 16, 4), swaddr_read(ebp + 20, 4));
 	}
