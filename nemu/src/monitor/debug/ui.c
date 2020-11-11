@@ -136,7 +136,7 @@ static int cmd_bt(char *args) {
 	int cnt = 1;
 	swaddr_t ebp = cpu.ebp, eip = cpu.eip;
 	char str[100];
-	for( ; ebp; eip = swaddr_read(ebp + 4, 4), ebp = swaddr_read(ebp, 4), ++ cnt)
+	for( ; ebp; eip = swaddr_read(ebp + 8, 4), ebp = swaddr_read(ebp, 4), ++ cnt)
 	{
 		get_Bt(eip, str);
 		if(str[0] == '\0')
