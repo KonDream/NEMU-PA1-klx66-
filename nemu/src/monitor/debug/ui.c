@@ -136,13 +136,13 @@ static int cmd_bt(char *args) {
 	int cnt = 1;
 	swaddr_t ebp = cpu.ebp, eip = cpu.eip;
 	char str[100];
-	for( ; ebp; eip = swaddr_read(ebp, 4), ebp = swaddr_read(ebp, 4), ++ cnt)
+	for( ; ebp; eip = swaddr_read(ebp + 4, 4), ebp = swaddr_read(ebp, 4), ++ cnt)
 	{
 		get_Bt(eip, str);
 		if(str[0] == '\0')
 		break;
 		printf("#%d\t0x%08x:\t%s\targ1:0x%08x arg2:0x%08x arg3:0x%08x arg4:0x%08x\n",
-				cnt, eip, str,
+				cnt, ebp, str,
 				swaddr_read(ebp + 8, 4), swaddr_read(ebp + 12, 4),
 				swaddr_read(ebp + 16, 4), swaddr_read(ebp + 20, 4));
 	}
