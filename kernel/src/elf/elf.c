@@ -37,22 +37,22 @@ uint32_t loader() {
 
 	/* Load each program segment */
 	//panic("please implement me");
-	int i = 0, phlen = elf->e_phnum;
-	ph = (Elf32_Phdr *)(buf + elf->e_phoff);
-	for(; i < phlen; ++ i) {
+	int i = 0;
+	ph = (void *)(buf + elf->e_phoff);
+	for(; i < elf->e_phnum; ++ i, ++ ph) {
 		/* Scan the program header table, load each segment into memory */
 		if(ph->p_type == PT_LOAD) {
 
 			/* TODO: read the content of the segment from the ELF file 
 			 * to the memory region [VirtAddr, VirtAddr + FileSiz)
 			 */
-			ramdisk_read((uint8_t *)ph->p_vaddr, ph->p_offset, ph->p_filesz);
+			ramdisk_read((uint8_t *)(ph->p_vaddr), ph->p_offset, ph->p_filesz);
 			 
 			/* TODO: zero the memory region 
 			 * [VirtAddr + FileSiz, VirtAddr + MemSiz)
 			 */
 			memset((void*)(ph->p_vaddr + ph->p_filesz), 0, ph->p_memsz - ph->p_filesz);
-			++ ph;
+			
 
 #ifdef IA32_PAGE
 			/* Record the program break for future use. */
