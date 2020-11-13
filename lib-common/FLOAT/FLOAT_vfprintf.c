@@ -7,6 +7,7 @@
 extern char _vfprintf_internal;
 extern char _fpmaxtostr;
 extern int __stdio_fwrite(char *buf, int len, FILE *stream);
+extern char _ppfs_setargs;
 
 __attribute__((used)) static int format_FLOAT(FILE *stream, FLOAT f) {
 	/* TODO: Format a FLOAT argument `f' and write the formating
@@ -124,7 +125,7 @@ static void modify_ppfs_setargs() {
 	 * the modification.
 	 */
 
-	int fp = (int)(&modify_ppfs_setargs);
+	int fp = (int)(&_ppfs_setargs);
 	char *flag = (char *)(fp + 0x71);
 	*flag = 0xeb;
 	flag = (char *)(fp + 0x72);
