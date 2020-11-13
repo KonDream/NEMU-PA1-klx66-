@@ -58,25 +58,25 @@ static void modify_vfprintf() {
 	char *flag = (char *)(pf + 0x306 - 0xa);
 	*flag = 0xff;
 
-	*flag = (char *)(pf + 0x306 - 0x9);
+	flag = (char *)(pf + 0x306 - 0x9);
 	*flag = 0x32;
 
-	*flag = (char *)(pf + 0x306 - 0x8);
+	flag = (char *)(pf + 0x306 - 0x8);
 	*flag = 0x90;
 
-	*flag = (char *)(pf + 0x306 - 0xb);
+	flag = (char *)(pf + 0x306 - 0xb);
 	*flag = 0x08;
 
-	*flag = (char *)(pf + 0x306 - 0x22);
+	flag = (char *)(pf + 0x306 - 0x22);
 	*flag = 0x90;
 
-	*flag = (char *)(pf + 0x306 - 0x21);
+	flag = (char *)(pf + 0x306 - 0x21);
 	*flag = 0x90;
 
-	*flag = (char *)(pf + 0x306 - 0x1d);
+	flag = (char *)(pf + 0x306 - 0x1d);
 	*flag = 0x90;
 
-	*flag = (char *)(pf + 0x306 - 0x1e);
+	flag = (char *)(pf + 0x306 - 0x1e);
 	*flag = 0x90;
 
 #if 0
