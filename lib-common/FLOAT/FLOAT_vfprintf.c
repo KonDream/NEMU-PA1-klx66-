@@ -125,13 +125,13 @@ static void modify_ppfs_setargs() {
 	 * the modification.
 	 */
 
-	int fp = (int)(&modify_ppfs_setargs);
+	/*int fp = (int)(&modify_ppfs_setargs);
 	char *flag = (char *)(fp + 0x71);
 	*flag = 0xeb;
 	flag = (char *)(fp + 0x72);
 	*flag = 0x30;
 	flag = (char *)(fp + 0x73);
-	*flag = 0x90;
+	*flag = 0x90;*/
 
 #if 0
 	enum {                          /* C type: */
