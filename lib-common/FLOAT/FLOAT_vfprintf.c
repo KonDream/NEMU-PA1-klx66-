@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include "FLOAT.h"
 #include <sys/mman.h>
+#include "trap.h"
 
 extern char _vfprintf_internal;
 extern char _fpmaxtostr;
@@ -130,7 +131,7 @@ static void modify_ppfs_setargs() {
 	*flag = 0x30;
 	flag = (char *)(fp + 0x73);
 	*flag = 0x90;
-	
+
 #if 0
 	enum {                          /* C type: */
 		PA_INT,                       /* int */
