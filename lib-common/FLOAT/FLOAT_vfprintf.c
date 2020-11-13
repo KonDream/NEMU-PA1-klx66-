@@ -26,11 +26,11 @@ static void modify_vfprintf() {
 	 * is the code section in _vfprintf_internal() relative to the
 	 * hijack.
 	 */
-	int pf = (int)(& _vfprintf_internal);
+	/*int pf = (int)(& _vfprintf_internal);
 	int* p = (int *)(pf + 0x306 + 1);
 	*p += (int)format_FLOAT - (int)(&_fpmaxtostr);
 
-/*	char *flag = (char *)(pf + 0x306 - 0xa);
+	char *flag = (char *)(pf + 0x306 - 0xa);
 	*flag = 0xff;
 
 	*flag = (char *)(pf + 0x306 - 0x9);
