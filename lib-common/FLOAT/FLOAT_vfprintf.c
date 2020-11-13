@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include "FLOAT.h"
+#include <sys/mman.h>
 
 extern char _vfprintf_internal;
 extern char _fpmaxtostr;
@@ -16,7 +17,24 @@ __attribute__((used)) static int format_FLOAT(FILE *stream, FLOAT f) {
 	 */
 
 	char buf[80];
-	int len = sprintf(buf, "0x%08x", f);
+	//int len = sprintf(buf, "0x%08x", f);
+	int sign = (f >> 31) & 1;
+	if(sign)
+	f = (~f) + 1;
+	int k1 = f >> 16;
+	int k2 = 0, i = 15, k3 = 1e8, len = 0;
+	for(; i >= 0; -- i)
+	{
+		k3 >>= 1;
+		if((f >> i) & 1)
+		k2 += k3;
+	}
+	while(k2 > 999999)
+	k2 /= 10;
+	if(sign)
+	len = sprintf(buf, "-%d.%06d", k1, k2);
+	else
+	len = sprintf(buf, "%d.%06d", k1, k2);
 	return __stdio_fwrite(buf, len, stream);
 }
 
@@ -26,9 +44,14 @@ static void modify_vfprintf() {
 	 * is the code section in _vfprintf_internal() relative to the
 	 * hijack.
 	 */
+	
+
 	int pf = (int)(& _vfprintf_internal);
+	//mprotect((void *)((pf + 0x306 - 100) & 0xfffff000), 4096 * 2, PROT_READ | PROT_WRITE | PROT_EXEC);
 	int* p = (int *)(pf + 0x306 + 1);
 	*p += (int)format_FLOAT - (int)(&_fpmaxtostr);
+
+	
 
 	char *flag = (char *)(pf + 0x306 - 0xa);
 	*flag = 0xff;
@@ -100,6 +123,14 @@ static void modify_ppfs_setargs() {
 	 * the modification.
 	 */
 
+	int fp = (int)(&modify_ppfs_setargs);
+	char *flag = (char *)(fp + 0x71);
+	*flag = 0xeb;
+	flag = (char *)(fp + 0x72);
+	*flag = 0x30;
+	flag = (char *)(fp + 0x73);
+	*flag = 0x90;
+	
 #if 0
 	enum {                          /* C type: */
 		PA_INT,                       /* int */
