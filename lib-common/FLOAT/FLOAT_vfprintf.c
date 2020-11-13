@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include "FLOAT.h"
 #include <sys/mman.h>
-#include "trap.h"
+//#include "trap.h"
 
 extern char _vfprintf_internal;
 extern char _fpmaxtostr;
