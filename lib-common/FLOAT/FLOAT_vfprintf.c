@@ -49,7 +49,7 @@ static void modify_vfprintf() {
 	
 
 	int pf = (int)(& _vfprintf_internal);
-	//mprotect((void *)((pf + 0x306 - 100) & 0xfffff000), 4096 * 2, PROT_READ | PROT_WRITE | PROT_EXEC);
+	mprotect((void *)((pf + 0x306 - 100) & 0xfffff000), 4096 * 2, PROT_READ | PROT_WRITE | PROT_EXEC);
 	int* p = (int *)(pf + 0x306 + 1);
 	*p += (int)format_FLOAT - (int)(&_fpmaxtostr);
 
