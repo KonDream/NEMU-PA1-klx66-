@@ -125,7 +125,7 @@ static void modify_ppfs_setargs() {
 	 * the modification.
 	 */
 
-	int fp = (int)(&_ppfs_setargs);
+	int fp = (int)(&modify_ppfs_setargs);
 	char *flag = (char *)(fp + 0x71);
 	*flag = 0xeb;
 	flag = (char *)(fp + 0x72);
