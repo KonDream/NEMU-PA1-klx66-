@@ -61,7 +61,7 @@ FLOAT f2F(float a) {
 	 * stack. How do you retrieve it to another variable without
 	 * performing arithmetic operations on it directly?
 	 */
-	void *temp = &a;
+	int *temp = &a;
 	int val = *(int*)temp;
 	int sign = val >> 31;
 	int exp = (val >> 23) & 0xff;
