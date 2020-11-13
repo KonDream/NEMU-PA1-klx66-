@@ -48,7 +48,7 @@ static void modify_vfprintf() {
 	 */
 	
 
-	int pf = (int)(& _vfprintf_internal);
+	/*int pf = (int)(& _vfprintf_internal);
 	//mprotect((void *)((pf + 0x306 - 100) & 0xfffff000), 4096 * 2, PROT_READ | PROT_WRITE | PROT_EXEC);
 	int* p = (int *)(pf + 0x306 + 1);
 	*p += (int)format_FLOAT - (int)(&_fpmaxtostr);
@@ -77,7 +77,7 @@ static void modify_vfprintf() {
 	*flag = 0x90;
 
 	*flag = (char *)(pf + 0x306 - 0x1e);
-	*flag = 0x90;
+	*flag = 0x90;*/
 
 #if 0
 	else if (ppfs->conv_num <= CONV_A) {  /* floating point */
