@@ -30,7 +30,7 @@ static void modify_vfprintf() {
 	int* p = (int *)(pf + 0x306 + 1);
 	*p += (int)format_FLOAT - (int)(&_fpmaxtostr);
 
-	char *flag = (char *)(pf + 0x306 - 0xa);
+/*	char *flag = (char *)(pf + 0x306 - 0xa);
 	*flag = 0xff;
 
 	*flag = (char *)(pf + 0x306 - 0x9);
@@ -52,7 +52,7 @@ static void modify_vfprintf() {
 	*flag = 0x90;
 
 	*flag = (char *)(pf + 0x306 - 0x1e);
-	*flag = 0x90;
+	*flag = 0x90;*/
 
 #if 0
 	else if (ppfs->conv_num <= CONV_A) {  /* floating point */
