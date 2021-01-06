@@ -1,5 +1,5 @@
 #include "nemu.h"
-#include "memory/cache.h"
+//#include "memory/cache.h"
 #define ENTRY_START 0x100000
 
 extern uint8_t entry [];
@@ -93,5 +93,5 @@ void restart() {
 	init_ddr3();
 
 	/* Initialize Cache. */
-	init_cache();
+	//init_cache();
 }
