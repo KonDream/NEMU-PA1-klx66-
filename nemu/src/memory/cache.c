@@ -68,6 +68,7 @@ void write_cache1(hwaddr_t addr, size_t len, uint32_t data){
                 memcpy(cache1[i].data + offset, &data, len);
                 
             }
+            printf("%d\n", test_time);
             return;
         }
     }

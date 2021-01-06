@@ -94,5 +94,4 @@ void restart() {
 
 	/* Initialize Cache. */
 	init_cache();
-	printf("%d\n", test_time);
 }
