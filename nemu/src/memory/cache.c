@@ -43,6 +43,7 @@ int read_cache1(hwaddr_t addr){
     
     cache1[i].valid = 1;
     cache1[i].tag = tag;
+    printf("%d\n", test_time);
     return i;
 }
 
