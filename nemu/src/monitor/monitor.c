@@ -93,5 +93,5 @@ void restart() {
 	init_ddr3();
 
 	/* Initialize Cache. */
-	//init_cache();
+	init_cache();
 }
