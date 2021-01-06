@@ -2,7 +2,7 @@
 #define __CACHE_H__
 
 #define Cache_Block_L1_Size 64 // cache block 存储空间的大小为 64B
-#define Cache_L1_Size 256  // cache 存储空间的大小为 64KB
+#define Cache_L1_Size 64 * 1024  // cache 存储空间的大小为 64KB
 #define Cache_L1_Way_Bit 3  // 8-way set associative
 #define Cache_L1_Group_Bit 7
 #define Cache_L1_Block_Bit 6
