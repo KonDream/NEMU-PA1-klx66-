@@ -26,7 +26,7 @@ typedef struct{
 Cache_L1 cache1[Cache_L1_Size/Cache_Block_L1_Size];
 
 #ifdef Test
-int test_time;
+uint64_t test_time;
 #endif
 
 void init_cache();
