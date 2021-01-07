@@ -45,8 +45,8 @@ make_helper(mov_cr2r){
 		/*case 3:
 			reg_l(reg_num) = cpu.cr3.val;
 			print_asm("mov CR3 %s",REG_NAME(reg_num));
-			break;*
-		default:*/
+			break;*/
+		default:
 			break;
 	}
 	return 2;
