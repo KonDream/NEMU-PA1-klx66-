@@ -84,8 +84,14 @@ static void init_CR0() {
 	cpu.cr0.paging = 0;	//	paging mode
 }
 
+static void init_eflags(){
+	cpu.EFLAGS.val = 0x00000002;
+}
+
 void restart() {
 	/* Perform some initialization to restart a program */
+	init_eflags();
+
 #ifdef USE_RAMDISK
 	/* Read the file with name `argv[1]' into ramdisk. */
 	init_ramdisk();
