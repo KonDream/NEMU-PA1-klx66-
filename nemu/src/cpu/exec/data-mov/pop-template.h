@@ -4,6 +4,7 @@
 
 static void do_execute()
 {
+    current_sreg = R_SS;
     if(DATA_BYTE != 1)
     {
         OPERAND_W(op_src, swaddr_read(REG(R_ESP), DATA_BYTE));

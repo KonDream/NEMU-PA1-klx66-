@@ -4,11 +4,16 @@
 #include "nemu.h"
 #include "cpu/decode/operand.h"
 
+extern uint8_t current_sreg;
 /* All function defined with 'make_helper' return the length of the operation. */
 #define make_helper(name) int name(swaddr_t eip)
 
 static inline uint32_t instr_fetch(swaddr_t addr, size_t len) {
-	return swaddr_read(addr, len);		// instruction fetch
+	uint8_t tmp_sreg = current_sreg;
+	current_sreg = R_CS;
+	uint32_t ret = swaddr_read(addr, len);
+	current_sreg = tmp_sreg;
+	return ret;		// instruction fetch
 }
 
 /* Instruction Decode and EXecute */

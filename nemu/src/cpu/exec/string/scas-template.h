@@ -4,6 +4,7 @@
 
 make_helper(concat(scas_, SUFFIX))
 {
+    current_sreg = R_ES;
     swaddr_t k = REG(R_EAX);
     swaddr_t l = MEM_R(reg_l(R_EDI));
     uint32_t ans = k - l;

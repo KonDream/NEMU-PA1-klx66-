@@ -4,6 +4,7 @@
 
 static void do_execute()
 {
+    current_sreg = R_SS;
     if(DATA_BYTE == 2) {
         cpu.eip -= 2;
         print_asm_template1();
