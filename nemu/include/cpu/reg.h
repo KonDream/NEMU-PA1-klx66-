@@ -80,6 +80,53 @@ typedef union {
 
 } CPU_state;
 
+typedef struct{
+	union{
+		struct{
+			uint16_t limit1;
+			uint16_t base1;
+		};
+		uint32_t part1;
+	};
+	union{
+		struct{
+			uint32_t base2:		8;
+			uint32_t a:			1;
+			uint32_t type:		3;
+			uint32_t s:			1;
+			uint32_t dpl:		2;
+			uint32_t p:			1;
+			uint32_t limit2:	4;
+			uint32_t avl:		1;
+			uint32_t :			1;
+			uint32_t x:			1;
+			uint32_t g:			1;
+			uint32_t base3:		8;
+		};
+		uint32_t part2;
+	};
+}Sreg_Descriptor;
+
+typedef struct {
+	union {
+		struct {
+			uint32_t p 	:1;
+			uint32_t rw	:1;
+			uint32_t us	:1;
+			uint32_t 	:2;
+			uint32_t a	:1;
+			uint32_t d 	:1;
+			uint32_t 	:2;
+			uint32_t avail	:3;
+			uint32_t addr 	:20;
+		};
+		uint32_t val;
+	};
+}Page_Descriptor;
+
+
+Sreg_Descriptor *sreg_desc;
+
 extern CPU_state cpu;
 uint8_t current_sreg;
 

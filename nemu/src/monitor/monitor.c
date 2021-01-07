@@ -74,6 +74,11 @@ static void load_entry() {
 	fclose(fp);
 }
 
+static void init_CS(){
+	cpu.cs.base = 0;
+	cpu.cs.limit = 0xffffffff;
+}
+
 static void init_CR0() {
 	cpu.cr0.protect_enable = 0;	//	real mode
 	cpu.cr0.paging = 0;	//	paging mode
@@ -102,4 +107,7 @@ void restart() {
 
 	/* Initialize CR0.	*/
 	init_CR0();
+
+	/* Initialize CS. */
+	init_CS();
 }

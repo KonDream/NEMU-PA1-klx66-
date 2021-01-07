@@ -58,6 +58,7 @@ static int cmd_info(char *args) {
 
 /* Add examine memory */
 static int cmd_x(char *args) {
+	current_sreg = R_DS;
 	char *arg = strtok(NULL, " ");
 	int n;
 	swaddr_t addr;
@@ -133,6 +134,7 @@ static int cmd_q(char *args) {
 void get_Bt(swaddr_t eip, char* str);
 
 static int cmd_bt(char *args) {
+	current_sreg = R_SS;
 	int cnt = 1;
 	swaddr_t ebp = cpu.ebp, eip = cpu.eip;
 	char str[100];
