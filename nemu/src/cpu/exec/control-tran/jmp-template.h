@@ -31,7 +31,7 @@ make_helper(ljmp){
     cpu.eip = op1 - 7;
     cpu.cs.selector = op2;
 
-    //current_sreg = R_CS;
+    current_sreg = R_CS;
 
     // printf("%x\n",cpu.eip);
     // printf("%x\n",instr_fetch(cpu.eip,1));
