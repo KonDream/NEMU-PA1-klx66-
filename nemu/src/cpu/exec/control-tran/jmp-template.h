@@ -46,7 +46,7 @@ make_helper(ljmp){
 
     // printf("%x     %x\n",sreg_desc -> part1,sreg_desc -> part2);
 
-	Assert(sreg_desc -> p == 1, "Segement Not Exist!");//p bit, whether sreg_desc exists
+	//Assert(sreg_desc -> p == 1, "Segement Not Exist!");//p bit, whether sreg_desc exists
 
     uint32_t bases = 0;
 	
