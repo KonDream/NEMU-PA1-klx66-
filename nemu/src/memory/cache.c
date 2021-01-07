@@ -11,9 +11,13 @@ void ddr3_write_replace(hwaddr_t addr, void *data, uint8_t *mask);
 
 void init_cache(){
     int i;
-    for(i = 0; i < Cache_L1_Size / Cache_Block_L1_Size;i ++)
+    for(i = 0; i < Cache_L1_Size / Cache_Block_L1_Size; i ++)
         cache1[i].valid = 0;
 
+    for(i = 0; i < Cache_L2_Size / Cache_Block_L2_Size; i ++){
+        cache2[i].valid = 0;
+        cache2[i].dirty = 0;
+    }
     test_time = 0;
 }
 
@@ -82,7 +86,7 @@ int read_cache2(hwaddr_t addr){
             ddr3_write_replace(block_st + BURST_LEN * w, cache2[i].data + BURST_LEN * w,ret);
         
     }
-    /*new content*/
+
     int j;
     for (j = 0;j < Cache_Block_L2_Size / BURST_LEN;j ++)
         ddr3_read_replace(block_start + BURST_LEN * j, cache2[i].data + BURST_LEN * j);
