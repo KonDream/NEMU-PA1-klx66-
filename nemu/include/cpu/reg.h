@@ -107,7 +107,7 @@ typedef struct{
 	};
 }Sreg_Descriptor;
 
-typedef struct {
+/*typedef struct {
 	union {
 		struct {
 			uint32_t p 	:1;
@@ -122,13 +122,14 @@ typedef struct {
 		};
 		uint32_t val;
 	};
-}Page_Descriptor;
+}Page_Descriptor;*/
 
 
 Sreg_Descriptor *sreg_desc;
 
 extern CPU_state cpu;
 uint8_t current_sreg;
+void sreg_load(uint8_t);
 
 static inline int check_reg_index(int index) {
 	assert(index >= 0 && index < 8);

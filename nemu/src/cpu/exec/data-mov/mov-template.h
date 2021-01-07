@@ -80,7 +80,7 @@ make_helper(mov_sreg2rm){
 	uint8_t reg_num = (modrm & 7); // r/m
 	cpu.sreg[sreg_num].selector = reg_w(reg_num);
 	
-	//sreg_load(sreg_num);
+	sreg_load(sreg_num);
 
 	print_asm("mov %s SREG[%u]",REG_NAME(reg_num),sreg_num);
 	return 2;
