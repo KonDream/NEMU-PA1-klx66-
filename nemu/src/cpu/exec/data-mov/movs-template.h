@@ -4,10 +4,10 @@
 
 make_helper(concat(movs_n_, SUFFIX))
 {
-    //current_sreg = R_DS;
-    //uint32_t tmp = MEM_R(reg_l(R_ESI));
-    //current_sreg = R_ES;
-    swaddr_write(reg_l(R_EDI), 4, swaddr_read(reg_l(R_ESI), 4));
+    current_sreg = R_DS;
+    uint32_t tmp = MEM_R(reg_l(R_ESI));
+    current_sreg = R_ES;
+    swaddr_write(reg_l(R_EDI), 4, tmp);
     if(cpu.EFLAGS.DF == 0)
     {
         reg_l(R_EDI) += DATA_BYTE;
