@@ -83,18 +83,10 @@ uint32_t get_reg_val(const char *s, bool *success) {
 }
 
 void sreg_load(uint8_t sreg_num){
-	//Assert(cpu.cr0.protect_enable,"Not In Protect Mode!");
-
 	uint16_t idx = cpu.sreg[sreg_num].selector >> 3;//index of sreg
-
-	//Assert((idx << 3) <= cpu.gdtr.limit,"Segement Selector Is Out Of The Limit!");
-
 	lnaddr_t chart_addr = cpu.gdtr.base + (idx << 3);//chart addr
 	sreg_desc -> part1 = lnaddr_read(chart_addr, 4);
 	sreg_desc -> part2 = lnaddr_read(chart_addr + 4, 4);
-
-	//Assert(sreg_desc -> p == 1, "Segement Not Exist!");//p bit, whether sreg_desc exists
-	
 	
 	uint32_t bases = 0;
 	
