@@ -85,24 +85,24 @@ uint32_t get_reg_val(const char *s, bool *success) {
 void sreg_load(uint8_t sreg_num){
 	uint16_t idx = cpu.sreg[sreg_num].selector >> 3;//index of sreg
 	lnaddr_t chart_addr = cpu.gdtr.base + (idx << 3);//chart addr
-	sreg_desc -> part1 = lnaddr_read(chart_addr, 4);
-	sreg_desc -> part2 = lnaddr_read(chart_addr + 4, 4);
+	sreg_desc->part1 = lnaddr_read(chart_addr, 4);
+	sreg_desc->part2 = lnaddr_read(chart_addr + 4, 4);
 	
 	uint32_t bases = 0;
 	
-	bases += ((uint32_t)sreg_desc -> base1);
+	bases += ((uint32_t)sreg_desc->base1);
 	
-	bases += ((uint32_t)sreg_desc -> base2)<< 16;
+	bases += ((uint32_t)sreg_desc->base2)<< 16;
 	
-	bases += ((uint32_t)sreg_desc -> base3) << 24;
+	bases += ((uint32_t)sreg_desc->base3) << 24;
 	cpu.sreg[sreg_num].base = bases;
 	//printf("%p\n",&(cpu.sreg[sreg_num].base));
 
 	uint32_t limits = 0;
-	limits += ((uint32_t)sreg_desc -> limit1);
-	limits += ((uint32_t)sreg_desc -> limit2) << 16;
+	limits += ((uint32_t)sreg_desc->limit1);
+	limits += ((uint32_t)sreg_desc->limit2) << 16;
 	limits += ((uint32_t)0xfff) << 24;
 	cpu.sreg[sreg_num].limit = limits;
-	if (sreg_desc -> g == 1) cpu.sreg[sreg_num].limit <<= 12;//G = 0, unit = 1B;G = 1, unit = 4KB
+	if (sreg_desc->g == 1) cpu.sreg[sreg_num].limit <<= 12;//G = 0, unit = 1B;G = 1, unit = 4KB
 }
 
