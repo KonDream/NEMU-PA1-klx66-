@@ -1,7 +1,7 @@
 #include "nemu.h"
 #include "memory/cache.h"
 #define ENTRY_START 0x100000
-
+#define EFLAGS_INITIAL_VALUE 0x00000002
 extern uint8_t entry [];
 extern uint32_t entry_len;
 extern char *exec_file;
@@ -102,7 +102,7 @@ void restart() {
 
 	/* Set the initial instruction pointer. */
 	cpu.eip = ENTRY_START;
-
+	cpu.EFLAGS.val = EFLAGS_INITIAL_VALUE;
 
 	//cpu.EFLAGS.val = 2;
 	/* Initialize DRAM. */
