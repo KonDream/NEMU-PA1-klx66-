@@ -83,7 +83,7 @@ uint32_t get_reg_val(const char *s, bool *success) {
 }
 
 void sreg_load(uint8_t sreg_num){
-	Assert(cpu.cr0.protect_enable, "Not in protect mode!");
+	//Assert(cpu.cr0.protect_enable, "Not in protect mode!");
 	uint16_t idx = cpu.sreg[sreg_num].selector >> 3;//index of sreg
 	lnaddr_t chart_addr = cpu.gdtr.base + (idx << 3);//chart addr
 	sreg_desc->part1 = lnaddr_read(chart_addr, 4);
