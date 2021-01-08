@@ -37,7 +37,7 @@ make_helper(ljmp){
     // printf("%x\n",instr_fetch(cpu.eip,1));
     uint16_t idx = cpu.cs.selector >> 3;//index of sreg
 
-	Assert((idx << 3) <= cpu.gdtr.limit,"Segement Selector Is Out Of The Limit!");
+	//Assert((idx << 3) <= cpu.gdtr.limit,"Segement Selector Is Out Of The Limit!");
     
 	uint32_t chart_addr = cpu.gdtr.base + (idx << 3);//chart addr
     
