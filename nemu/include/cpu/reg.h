@@ -54,13 +54,11 @@ typedef union {
 				};		
 				uint32_t val;
         	}EFLAGS;
-		swaddr_t eip;	
-     };
 
-	struct GDTR{
+		struct GDTR{
 		uint32_t base;
 		uint16_t limit;
-	}gdtr;
+		}gdtr;
 
 	CR0 cr0;
 
@@ -76,7 +74,10 @@ typedef union {
 
 	};
 
-	CR3 cr3;
+	//CR3 cr3;
+
+		swaddr_t eip;	
+     };
 
 } CPU_state;
 
