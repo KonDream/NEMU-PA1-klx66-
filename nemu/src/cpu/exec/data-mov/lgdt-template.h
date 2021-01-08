@@ -3,6 +3,7 @@
 #define instr lgdt
 
 static void do_execute() {
+	current_sreg = R_DS;
     cpu.gdtr.limit = swaddr_read(op_src -> addr, 2);
 	if (op_src -> size == 2){
 		cpu.gdtr.base = swaddr_read(op_src -> addr + 2, 3);//24 bit

@@ -16,7 +16,7 @@ make_helper(concat(ret_i_, SUFFIX))
     current_sreg = R_SS;
     int addr = instr_fetch(eip + 1, 2);
     cpu.eip = MEM_R(REG(R_ESP));
-    if(DATA_BYTE == 2)
+    //if(DATA_BYTE == 2)
     cpu.eip &= 0xffff;
     REG(R_ESP) += 2 + addr;
     print_asm_template1();
