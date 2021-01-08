@@ -58,7 +58,7 @@ static int cmd_info(char *args) {
 
 /* Add examine memory */
 static int cmd_x(char *args) {
-	current_sreg = R_DS;
+	
 	char *arg = strtok(NULL, " ");
 	int n;
 	swaddr_t addr;
@@ -74,7 +74,7 @@ static int cmd_x(char *args) {
 				if(i % 4 == 0) {
 					printf("0x%08x: ", addr);
 				}
-
+				current_sreg = R_DS;
 				printf("0x%08x ", swaddr_read(addr, 4));
 				addr += 4;
 				if(i % 4 == 3) {
